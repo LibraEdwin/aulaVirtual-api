@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import Usur from '../model/user';
+import User from '../model/user';
 
 export const getUser = async (req: Request, res: Response) => {
 
-    const user = await Usur.findAll()
+    const user = await User.findAll()
 
     res.status(200).json(
         user
@@ -15,7 +15,7 @@ export const getUserID = async (req: Request, res: Response) => {
 
     const { id } = req.params
 
-    const user = await Usur.findByPk(id)
+    const user = await User.findByPk(id)
 
     res.status(200).json(
         user
@@ -29,7 +29,7 @@ export const postUser = async (req: Request, res: Response) => {
 
     try {
 
-        const user = new Usur(body)
+        const user = new User(body)
         await user.save()
         res.status(201).json({
             ok: true,
@@ -56,7 +56,7 @@ export const putUser = async (req: Request, res: Response) => {
 
     try {
 
-        const user = await Usur.findByPk(id)
+        const user = await User.findByPk(id)
 
         if (!user) {
             return res.status(404).json({
@@ -89,7 +89,7 @@ export const deleteUser = async (req: Request, res: Response) => {
 
     const { id } = req.params
 
-    const user = await Usur.findByPk(id)
+    const user = await User.findByPk(id)
 
     if (!user) {
         return res.status(404).json({

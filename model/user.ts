@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize'
 import db from '../db/connection'
 
-const Usur = db.define('User', {
+const User = db.define('User', {
     correo: {
         type: DataTypes.STRING
     },
@@ -13,4 +13,4 @@ const Usur = db.define('User', {
     }
 })
 
-export default Usur
+export default User
