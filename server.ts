@@ -1,5 +1,5 @@
 import express, { Application } from 'express'
-import useRout from './routes/user'
+import useRout from './routes/Usuario'
 import cors from 'cors'
 import db from './db/connection'
 
@@ -8,7 +8,7 @@ class Server {
     private app: Application
     private port: string
     private apiPaths = {
-        user: '/user'
+        usuario: '/usuario'
     }
 
     constructor() {
@@ -32,7 +32,7 @@ class Server {
 
         } catch (error) {
 
-            console.log('Error en la base de datos')
+            console.error(`Error en la base de datos ${error}`)
 
         }
     }
@@ -48,7 +48,7 @@ class Server {
     }
 
     routes() {
-        this.app.use(this.apiPaths.user, useRout)
+        this.app.use(this.apiPaths.usuario, useRout)
     }
 
     listen() {

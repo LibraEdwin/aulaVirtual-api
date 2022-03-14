@@ -13,13 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const user_1 = __importDefault(require("./routes/user"));
+const Usuario_1 = __importDefault(require("./routes/Usuario"));
 const cors_1 = __importDefault(require("cors"));
 const connection_1 = __importDefault(require("./db/connection"));
 class Server {
     constructor() {
         this.apiPaths = {
-            user: '/user'
+            usuario: '/usuario'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -34,7 +34,7 @@ class Server {
                 console.log(`Db online en el puerto ${this.port}`);
             }
             catch (error) {
-                console.log('Error en la base de datos');
+                console.error(`Error en la base de datos ${error}`);
             }
         });
     }
@@ -44,7 +44,7 @@ class Server {
         this.app.use(express_1.default.static('public'));
     }
     routes() {
-        this.app.use(this.apiPaths.user, user_1.default);
+        this.app.use(this.apiPaths.usuario, Usuario_1.default);
     }
     listen() {
         this.app.listen(this.port);

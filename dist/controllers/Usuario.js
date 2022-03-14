@@ -12,23 +12,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.putUser = exports.postUser = exports.getUserID = exports.getUser = void 0;
-const user_1 = __importDefault(require("../model/user"));
-const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield user_1.default.findAll();
-    res.status(200).json(user);
+exports.deleteUsuario = exports.putUsuario = exports.postUsuario = exports.getUsuarioID = exports.getUsuario = void 0;
+const usuario_1 = __importDefault(require("../model/usuario"));
+const getUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const usuario = yield usuario_1.default.findAll();
+    res.status(200).json(usuario);
 });
-exports.getUser = getUser;
-const getUserID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getUsuario = getUsuario;
+const getUsuarioID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const user = yield user_1.default.findByPk(id);
+    const user = yield usuario_1.default.findByPk(id);
     res.status(200).json(user);
 });
-exports.getUserID = getUserID;
-const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getUsuarioID = getUsuarioID;
+const postUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
-        const user = yield user_1.default.create(body);
+        const user = yield usuario_1.default.create(body);
         yield user.save();
         res.status(201).json({
             ok: true,
@@ -43,12 +43,12 @@ const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
 });
-exports.postUser = postUser;
-const putUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.postUsuario = postUsuario;
+const putUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { body } = req;
     try {
-        const user = yield user_1.default.findByPk(id);
+        const user = yield usuario_1.default.findByPk(id);
         if (!user) {
             return res.status(404).json({
                 ok: false,
@@ -69,10 +69,10 @@ const putUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
 });
-exports.putUser = putUser;
-const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.putUsuario = putUsuario;
+const deleteUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const user = yield user_1.default.findByPk(id);
+    const user = yield usuario_1.default.findByPk(id);
     if (!user) {
         return res.status(404).json({
             ok: false,
@@ -85,5 +85,5 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         msg: 'Usuario desactivado '
     });
 });
-exports.deleteUser = deleteUser;
-//# sourceMappingURL=user.js.map
+exports.deleteUsuario = deleteUsuario;
+//# sourceMappingURL=Usuario.js.map

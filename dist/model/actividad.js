@@ -5,28 +5,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-const Usuario = connection_1.default.define('Usuario', {
-    nombres: {
+const Actividad = connection_1.default.define('Actividad', {
+    idactividad: {
+        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    actividad: {
         type: sequelize_1.DataTypes.STRING
     },
-    apellidos: {
+    comentario: {
         type: sequelize_1.DataTypes.STRING
     },
-    correo: {
-        type: sequelize_1.DataTypes.STRING
+    nota: {
+        type: sequelize_1.DataTypes.INTEGER
     },
-    contraseña: {
-        type: sequelize_1.DataTypes.STRING
-    },
-    img: {
-        type: sequelize_1.DataTypes.BOOLEAN
-    },
-    rol: {
-        type: sequelize_1.DataTypes.STRING
-    },
-    estado: {
-        type: sequelize_1.DataTypes.BOOLEAN
+    usuario_idusuario: {
+        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        allowNull: false
     }
 });
-exports.default = Usuario;
-//# sourceMappingURL=user.js.map
+exports.default = Actividad;
+//# sourceMappingURL=actividad.js.map
