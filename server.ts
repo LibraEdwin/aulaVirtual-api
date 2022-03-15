@@ -1,5 +1,5 @@
 import express, { Application } from 'express'
-import { routerActividad, routerAula, routerUsuario } from './routes'
+import { routerActividad, routerAula } from './routes'
 import cors from 'cors'
 import db from './db/connection'
 
