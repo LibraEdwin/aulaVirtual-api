@@ -13,15 +13,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-//import routerUsuario from './routes/usuario'
-const actividad_1 = __importDefault(require("./routes/actividad"));
+const routes_1 = require("./routes");
 const cors_1 = __importDefault(require("cors"));
 const connection_1 = __importDefault(require("./db/connection"));
 class Server {
     constructor() {
         this.apiPaths = {
-            usuario: '/paths/usuario',
-            actividad: '/paths/actividad'
+            actividad: '/paths/actividad',
+            aula: '/paths/actividad',
+            curso: '/paths/actividad',
+            evento: '/paths/actividad',
+            usuario: '/paths/usuario'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -46,8 +48,8 @@ class Server {
         this.app.use(express_1.default.static('public'));
     }
     routes() {
-        //this.app.use(this.apiPaths.usuario, routerUsuario)
-        this.app.use(this.apiPaths.actividad, actividad_1.default);
+        this.app.use(this.apiPaths.usuario, routes_1.routerUsuario);
+        this.app.use(this.apiPaths.actividad, routes_1.routerActividad);
     }
     listen() {
         this.app.listen(this.port);

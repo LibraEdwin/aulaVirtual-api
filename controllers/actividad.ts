@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Actividad from '../model/actividad';
+import { Actividad } from '../model';
 
 export const getActividad = async (req: Request, res: Response) => {
 
@@ -53,7 +53,7 @@ export const putActividad = async (req: Request, res: Response) => {
 
     const { id } = req.params
     const { body } = req
- 
+
     try {
 
         const actividad = await Actividad.findByPk(id)

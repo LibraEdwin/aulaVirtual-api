@@ -1,16 +1,16 @@
 import { Router } from "express";
 import { getActividad, getActividadID, postActividad, putActividad, deleteActividad } from "../controllers/actividad"
 
-const router = Router()
+const routerActividad = Router()
 
-router.get('/', getActividad)
+routerActividad.get('/', getActividad)
 
-router.get('/:id', getActividadID)
+routerActividad.get('/:id', getActividadID)
 
-router.post('/', postActividad)
+routerActividad.post('/', postActividad)
 
-router.put('/:id', putActividad)
+routerActividad.put('/:id', putActividad)
 
-router.delete('/:id', deleteActividad)
+routerActividad.delete('/:id', deleteActividad)
 
-export default router
+export default routerActividad

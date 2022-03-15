@@ -1,6 +1,5 @@
 import express, { Application } from 'express'
-//import routerUsuario from './routes/usuario'
-import routerActividad from './routes/actividad'
+import { routerActividad, routerUsuario } from './routes'
 import cors from 'cors'
 import db from './db/connection'
 
@@ -9,8 +8,11 @@ class Server {
     private app: Application
     private port: string
     private apiPaths = {
-        usuario: '/paths/usuario',
-        actividad: '/paths/actividad'
+        actividad: '/paths/actividad',
+        aula: '/paths/actividad',
+        curso: '/paths/actividad',
+        evento: '/paths/actividad',
+        usuario: '/paths/usuario'
     }
 
     constructor() {
@@ -50,7 +52,7 @@ class Server {
     }
 
     routes() {
-        //this.app.use(this.apiPaths.usuario, routerUsuario)
+        this.app.use(this.apiPaths.usuario, routerUsuario)
         this.app.use(this.apiPaths.actividad, routerActividad)
     }
 

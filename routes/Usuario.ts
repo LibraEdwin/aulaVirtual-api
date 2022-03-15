@@ -1,16 +1,16 @@
 import { Router } from "express";
 import { getUsuario, getUsuarioID, postUsuario, putUsuario, deleteUsuario } from '../controllers/usuario';
 
-const router = Router()
+const routerUsuario = Router()
 
-router.get('/', getUsuario)
+routerUsuario.get('/', getUsuario)
 
-router.get('/:id', getUsuarioID)
+routerUsuario.get('/:id', getUsuarioID)
 
-router.post('/', postUsuario)
+routerUsuario.post('/', postUsuario)
 
-router.put('/:id', putUsuario)
+routerUsuario.put('/:id', putUsuario)
 
-router.delete('/:id', deleteUsuario)
+routerUsuario.delete('/:id', deleteUsuario)
 
-export default router
+export default routerUsuario

@@ -8,27 +8,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteActividad = exports.putActividad = exports.postActividad = exports.getActividadID = exports.getActividad = void 0;
-const actividad_1 = __importDefault(require("../model/actividad"));
+const model_1 = require("../model");
 const getActividad = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const actividad = yield actividad_1.default.findAll();
+    const actividad = yield model_1.Actividad.findAll();
     res.status(200).json(actividad);
 });
 exports.getActividad = getActividad;
 const getActividadID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const actividad = yield actividad_1.default.findByPk(id);
+    const actividad = yield model_1.Actividad.findByPk(id);
     res.status(200).json(actividad);
 });
 exports.getActividadID = getActividadID;
 const postActividad = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
-        const actividad = yield actividad_1.default.create(body);
+        const actividad = yield model_1.Actividad.create(body);
         yield actividad.save();
         res.status(201).json({
             ok: true,
@@ -48,7 +45,7 @@ const putActividad = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     const { id } = req.params;
     const { body } = req;
     try {
-        const actividad = yield actividad_1.default.findByPk(id);
+        const actividad = yield model_1.Actividad.findByPk(id);
         if (!actividad) {
             return res.status(404).json({
                 ok: false,
@@ -72,7 +69,7 @@ const putActividad = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 exports.putActividad = putActividad;
 const deleteActividad = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const actividad = yield actividad_1.default.findByPk(id);
+    const actividad = yield model_1.Actividad.findByPk(id);
     if (!actividad) {
         return res.status(404).json({
             ok: false,
