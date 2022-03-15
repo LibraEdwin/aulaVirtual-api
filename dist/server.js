@@ -23,7 +23,7 @@ class Server {
             aula: '/paths/aula',
             curso: '/paths/curso',
             evento: '/paths/evento',
-            usuario: '/paths/usuario'
+            user: '/paths/usuario'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -50,6 +50,9 @@ class Server {
     routes() {
         this.app.use(this.apiPaths.actividad, routes_1.routerActividad);
         this.app.use(this.apiPaths.aula, routes_1.routerAula);
+        this.app.use(this.apiPaths.curso, routes_1.routerCurso);
+        this.app.use(this.apiPaths.evento, routes_1.routerEvento);
+        this.app.use(this.apiPaths.user, routes_1.routerUser);
     }
     listen() {
         this.app.listen(this.port);

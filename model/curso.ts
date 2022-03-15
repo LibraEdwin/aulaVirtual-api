@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize'
 import db from '../db/connection'
 
 const Curso = db.define('Curso', {
-    idactividad: {
+    idcurso: {
         type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true

@@ -1,5 +1,5 @@
 import express, { Application } from 'express'
-import { routerActividad, routerAula } from './routes'
+import { routerActividad, routerAula, routerCurso, routerEvento, routerUser } from './routes'
 import cors from 'cors'
 import db from './db/connection'
 
@@ -12,7 +12,7 @@ class Server {
         aula: '/paths/aula',
         curso: '/paths/curso',
         evento: '/paths/evento',
-        usuario: '/paths/usuario'
+        user: '/paths/usuario'
     }
 
     constructor() {
@@ -54,6 +54,9 @@ class Server {
     routes() {
         this.app.use(this.apiPaths.actividad, routerActividad)
         this.app.use(this.apiPaths.aula, routerAula)
+        this.app.use(this.apiPaths.curso, routerCurso)
+        this.app.use(this.apiPaths.evento, routerEvento)
+        this.app.use(this.apiPaths.user, routerUser)
     }
 
     listen() {
