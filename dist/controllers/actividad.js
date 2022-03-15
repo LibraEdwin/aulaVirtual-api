@@ -12,24 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUsuario = exports.putUsuario = exports.postUsuario = exports.getUsuarioID = exports.getUsuario = void 0;
-const usuario_1 = __importDefault(require("../model/usuario"));
-const getUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const usuario = yield usuario_1.default.findAll();
-    res.status(200).json(usuario);
+exports.deleteActividad = exports.putActividad = exports.postActividad = exports.getActividadID = exports.getActividad = void 0;
+const actividad_1 = __importDefault(require("../model/actividad"));
+const getActividad = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const actividad = yield actividad_1.default.findAll();
+    res.status(200).json(actividad);
 });
-exports.getUsuario = getUsuario;
-const getUsuarioID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getActividad = getActividad;
+const getActividadID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const user = yield usuario_1.default.findByPk(id);
-    res.status(200).json(user);
+    const actividad = yield actividad_1.default.findByPk(id);
+    res.status(200).json(actividad);
 });
-exports.getUsuarioID = getUsuarioID;
-const postUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getActividadID = getActividadID;
+const postActividad = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
-        const user = yield usuario_1.default.create(body);
-        yield user.save();
+        const actividad = yield actividad_1.default.create(body);
+        yield actividad.save();
         res.status(201).json({
             ok: true,
             msg: 'Usuario registrado'
@@ -43,19 +43,19 @@ const postUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
 });
-exports.postUsuario = postUsuario;
-const putUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.postActividad = postActividad;
+const putActividad = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { body } = req;
     try {
-        const user = yield usuario_1.default.findByPk(id);
-        if (!user) {
+        const actividad = yield actividad_1.default.findByPk(id);
+        if (!actividad) {
             return res.status(404).json({
                 ok: false,
                 msg: `No existe el usuario con el id: ${id}`
             });
         }
-        yield user.update(body);
+        yield actividad.update(body);
         res.status(201).json({
             ok: true,
             msg: 'Usuario actualizaddo'
@@ -69,21 +69,21 @@ const putUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         });
     }
 });
-exports.putUsuario = putUsuario;
-const deleteUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.putActividad = putActividad;
+const deleteActividad = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const user = yield usuario_1.default.findByPk(id);
-    if (!user) {
+    const actividad = yield actividad_1.default.findByPk(id);
+    if (!actividad) {
         return res.status(404).json({
             ok: false,
             msg: `No existe el usuario con el id: ${id}`
         });
     }
-    yield user.update({ estado: false });
+    yield actividad.update({ estado: false });
     res.status(200).json({
         ok: true,
         msg: 'Usuario desactivado '
     });
 });
-exports.deleteUsuario = deleteUsuario;
-//# sourceMappingURL=usuario.js.map
+exports.deleteActividad = deleteActividad;
+//# sourceMappingURL=actividad.js.map

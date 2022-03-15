@@ -22,4 +22,4 @@ const Actividad = db.define('Actividad', {
     }
 })
 
-export default Actividad
+export default Actividad 
