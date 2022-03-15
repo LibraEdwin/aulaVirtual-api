@@ -50,7 +50,6 @@ class Server {
     routes() {
         this.app.use(this.apiPaths.actividad, routes_1.routerActividad);
         this.app.use(this.apiPaths.aula, routes_1.routerAula);
-        //this.app.use(this.apiPaths.usuario, routerUsuario)
     }
     listen() {
         this.app.listen(this.port);
