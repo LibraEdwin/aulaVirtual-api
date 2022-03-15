@@ -1,6 +1,6 @@
 import express, { Application } from 'express'
-import useRoutUsuario from './routes/usuario'
-import useRoutActividad from './routes/actividad'
+import routerUsuario from './routes/usuario'
+import routerActividad from './routes/actividad'
 import cors from 'cors'
 import db from './db/connection'
 
@@ -50,8 +50,8 @@ class Server {
     }
 
     routes() {
-        this.app.use(this.apiPaths.usuario, useRoutUsuario)
-        this.app.use(this.apiPaths.actividad, useRoutActividad)
+        this.app.use(this.apiPaths.usuario, routerUsuario)
+        this.app.use(this.apiPaths.actividad, routerActividad)
     }
 
     listen() {
