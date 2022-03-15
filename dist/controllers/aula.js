@@ -9,24 +9,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUsuario = exports.putUsuario = exports.postUsuario = exports.getUsuarioID = exports.getUsuario = void 0;
+exports.deleteAula = exports.putAula = exports.postAula = exports.getAulaID = exports.getAula = void 0;
 const model_1 = require("../model");
-const getUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const usuario = yield model_1.Usuario.findAll();
-    res.status(200).json(usuario);
+const getAula = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const aula = yield model_1.Aula.findAll();
+    res.status(200).json(aula);
 });
-exports.getUsuario = getUsuario;
-const getUsuarioID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getAula = getAula;
+const getAulaID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const usuario = yield model_1.Usuario.findByPk(id);
-    res.status(200).json(usuario);
+    const aula = yield model_1.Aula.findByPk(id);
+    res.status(200).json(aula);
 });
-exports.getUsuarioID = getUsuarioID;
-const postUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getAulaID = getAulaID;
+const postAula = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
-        const usuario = yield model_1.Usuario.create(body);
-        yield usuario.save();
+        const aula = yield model_1.Aula.create(body);
+        yield aula.save();
         res.status(201).json({
             ok: true,
             msg: 'Usuario registrado'
@@ -40,19 +40,19 @@ const postUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
 });
-exports.postUsuario = postUsuario;
-const putUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.postAula = postAula;
+const putAula = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { body } = req;
     try {
-        const usuario = yield model_1.Usuario.findByPk(id);
-        if (!usuario) {
+        const aula = yield model_1.Aula.findByPk(id);
+        if (!aula) {
             return res.status(404).json({
                 ok: false,
                 msg: `No existe el usuario con el id: ${id}`
             });
         }
-        yield usuario.update(body);
+        yield aula.update(body);
         res.status(201).json({
             ok: true,
             msg: 'Usuario actualizaddo'
@@ -66,21 +66,21 @@ const putUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         });
     }
 });
-exports.putUsuario = putUsuario;
-const deleteUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.putAula = putAula;
+const deleteAula = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const usuario = yield model_1.Usuario.findByPk(id);
-    if (!usuario) {
+    const aula = yield model_1.Aula.findByPk(id);
+    if (!aula) {
         return res.status(404).json({
             ok: false,
             msg: `No existe el usuario con el id: ${id}`
         });
     }
-    yield usuario.update({ estado: false });
+    yield aula.update({ estado: false });
     res.status(200).json({
         ok: true,
         msg: 'Usuario desactivado '
     });
 });
-exports.deleteUsuario = deleteUsuario;
-//# sourceMappingURL=usuario.js.map
+exports.deleteAula = deleteAula;
+//# sourceMappingURL=aula.js.map

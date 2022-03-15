@@ -1,35 +1,36 @@
 import { Request, Response } from 'express';
-import { Usuario } from '../model';
+import { Aula } from '../model';
 
-export const getUsuario = async (req: Request, res: Response) => {
+export const getAula = async (req: Request, res: Response) => {
 
-    const usuario = await Usuario.findAll()
+    const aula = await Aula.findAll()
 
     res.status(200).json(
-        usuario
+        aula
     )
 
 }
 
-export const getUsuarioID = async (req: Request, res: Response) => {
+export const getAulaID = async (req: Request, res: Response) => {
 
     const { id } = req.params
 
-    const usuario = await Usuario.findByPk(id)
+    const aula = await Aula.findByPk(id)
 
     res.status(200).json(
-        usuario)
+        aula
+    )
 
 }
 
-export const postUsuario = async (req: Request, res: Response) => {
+export const postAula = async (req: Request, res: Response) => {
 
     const { body } = req
 
     try {
 
-        const usuario = await Usuario.create(body)
-        await usuario.save()
+        const aula = await Aula.create(body)
+        await aula.save()
         res.status(201).json({
             ok: true,
             msg: 'Usuario registrado'
@@ -48,23 +49,23 @@ export const postUsuario = async (req: Request, res: Response) => {
 
 }
 
-export const putUsuario = async (req: Request, res: Response) => {
+export const putAula = async (req: Request, res: Response) => {
 
     const { id } = req.params
     const { body } = req
 
     try {
 
-        const usuario = await Usuario.findByPk(id)
+        const aula = await Aula.findByPk(id)
 
-        if (!usuario) {
+        if (!aula) {
             return res.status(404).json({
                 ok: false,
                 msg: `No existe el usuario con el id: ${id}`
             })
         }
 
-        await usuario.update(body)
+        await aula.update(body)
 
         res.status(201).json({
             ok: true,
@@ -84,20 +85,20 @@ export const putUsuario = async (req: Request, res: Response) => {
 
 }
 
-export const deleteUsuario = async (req: Request, res: Response) => {
+export const deleteAula = async (req: Request, res: Response) => {
 
     const { id } = req.params
 
-    const usuario = await Usuario.findByPk(id)
+    const aula = await Aula.findByPk(id)
 
-    if (!usuario) {
+    if (!aula) {
         return res.status(404).json({
             ok: false,
             msg: `No existe el usuario con el id: ${id}`
         })
     }
 
-    await usuario.update({ estado: false })
+    await aula.update({ estado: false })
 
     res.status(200).json({
         ok: true,

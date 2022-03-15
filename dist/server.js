@@ -20,9 +20,9 @@ class Server {
     constructor() {
         this.apiPaths = {
             actividad: '/paths/actividad',
-            aula: '/paths/actividad',
-            curso: '/paths/actividad',
-            evento: '/paths/actividad',
+            aula: '/paths/aula',
+            curso: '/paths/curso',
+            evento: '/paths/evento',
             usuario: '/paths/usuario'
         };
         this.app = (0, express_1.default)();
@@ -48,8 +48,9 @@ class Server {
         this.app.use(express_1.default.static('public'));
     }
     routes() {
-        this.app.use(this.apiPaths.usuario, routes_1.routerUsuario);
         this.app.use(this.apiPaths.actividad, routes_1.routerActividad);
+        this.app.use(this.apiPaths.aula, routes_1.routerAula);
+        //this.app.use(this.apiPaths.usuario, routerUsuario)
     }
     listen() {
         this.app.listen(this.port);
