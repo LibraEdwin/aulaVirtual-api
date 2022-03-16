@@ -1,9 +1,13 @@
 import { Request, Response } from 'express';
-import { Actividad } from '../model';
+import { Actividad, Usuario } from '../model';
 
 export const getActividad = async (req: Request, res: Response) => {
 
-    const actividad = await Actividad.findAll()
+    const actividad = await Actividad.findAll({
+        include: {
+            model: Usuario
+        }
+    })
 
     res.status(200).json(
         actividad

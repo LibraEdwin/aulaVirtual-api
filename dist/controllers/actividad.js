@@ -12,7 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteActividad = exports.putActividad = exports.postActividad = exports.getActividadID = exports.getActividad = void 0;
 const model_1 = require("../model");
 const getActividad = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const actividad = yield model_1.Actividad.findAll();
+    const actividad = yield model_1.Actividad.findAll({
+        include: {
+            model: model_1.Usuario
+        }
+    });
     res.status(200).json(actividad);
 });
 exports.getActividad = getActividad;
