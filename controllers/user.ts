@@ -3,7 +3,17 @@ import { Actividad, Evento, Usuario } from '../model';
 
 export const getUser = async (req: Request, res: Response) => {
 
-    const user = await Usuario.findAll()
+    const user = await Usuario.findAll({
+        attributes:[
+            'nombres','apellidos','correo','contraseña','img','rol'
+        ],
+        include: [
+            Actividad
+        ],
+        where:{
+            rol:'ALUMNO'
+        }
+    })
 
     res.status(200).json(
         user

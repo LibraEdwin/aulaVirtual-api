@@ -12,7 +12,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUser = exports.putUser = exports.postUser = exports.getUserID = exports.getUser = void 0;
 const model_1 = require("../model");
 const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield model_1.Usuario.findAll();
+    const user = yield model_1.Usuario.findAll({
+        attributes: [
+            'nombres', 'apellidos', 'correo', 'contraseña', 'img', 'rol'
+        ],
+        include: [
+            model_1.Actividad
+        ],
+        where: {
+            rol: 'ALUMNO'
+        }
+    });
     res.status(200).json(user);
 });
 exports.getUser = getUser;
