@@ -5,19 +5,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-const Curso_usuarios = connection_1.default.define('Curso_usuarios', {
+const Curso_usuario = connection_1.default.define('Curso_usuario', {
     usuario_idusuarios: {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
-        primaryKey: true,
+        primaryKey: true
     },
     cursos_idcursos: {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
-        primaryKey: true,
+        primaryKey: true
     }
 }, {
     timestamps: false
 });
-exports.default = Curso_usuarios;
+exports.default = Curso_usuario;
 //# sourceMappingURL=curso_usuario.js.map

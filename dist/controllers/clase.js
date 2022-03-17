@@ -9,26 +9,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteCurso_usuario = exports.putCurso_usuario = exports.postCurso_usuario = exports.getCurso_usuarioID = exports.getCurso_usuario = void 0;
+exports.deleteClase = exports.putClase = exports.postClase = exports.getClaseID = exports.getClase = void 0;
 const model_1 = require("../model");
-const getCurso_usuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const curso_usuarios = yield model_1.Curso_usuario.findAll({
-        include: [model_1.Usuario, model_1.Curso]
+const getClase = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const clase = yield model_1.Clase.findAll({
+        include: [model_1.Curso, model_1.Aula]
     });
-    res.status(200).json(curso_usuarios);
+    res.status(200).json(clase);
 });
-exports.getCurso_usuario = getCurso_usuario;
-const getCurso_usuarioID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getClase = getClase;
+const getClaseID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const curso_usuarios = yield model_1.Curso_usuario.findByPk(id);
-    res.status(200).json(curso_usuarios);
+    const clase = yield model_1.Clase.findByPk(id);
+    res.status(200).json(clase);
 });
-exports.getCurso_usuarioID = getCurso_usuarioID;
-const postCurso_usuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getClaseID = getClaseID;
+const postClase = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
-        const curso_usuarios = yield model_1.Curso_usuario.create(body);
-        yield curso_usuarios.save();
+        const clase = yield model_1.Clase.create(body);
+        yield clase.save();
         res.status(201).json({
             ok: true,
             msg: 'Usuario registrado'
@@ -42,19 +42,19 @@ const postCurso_usuario = (req, res) => __awaiter(void 0, void 0, void 0, functi
         });
     }
 });
-exports.postCurso_usuario = postCurso_usuario;
-const putCurso_usuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.postClase = postClase;
+const putClase = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { body } = req;
     try {
-        const curso_usuarios = yield model_1.Curso_usuario.findByPk(id);
-        if (!curso_usuarios) {
+        const clase = yield model_1.Clase.findByPk(id);
+        if (!clase) {
             return res.status(404).json({
                 ok: false,
                 msg: `No existe el usuario con el id: ${id}`
             });
         }
-        yield curso_usuarios.update(body);
+        yield clase.update(body);
         res.status(201).json({
             ok: true,
             msg: 'Usuario actualizaddo'
@@ -68,21 +68,21 @@ const putCurso_usuario = (req, res) => __awaiter(void 0, void 0, void 0, functio
         });
     }
 });
-exports.putCurso_usuario = putCurso_usuario;
-const deleteCurso_usuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.putClase = putClase;
+const deleteClase = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const curso_usuarios = yield model_1.Curso_usuario.findByPk(id);
-    if (!curso_usuarios) {
+    const clase = yield model_1.Clase.findByPk(id);
+    if (!clase) {
         return res.status(404).json({
             ok: false,
             msg: `No existe el usuario con el id: ${id}`
         });
     }
-    yield curso_usuarios.update({ estado: false });
+    yield clase.update({ estado: false });
     res.status(200).json({
         ok: true,
         msg: 'Usuario desactivado '
     });
 });
-exports.deleteCurso_usuario = deleteCurso_usuario;
-//# sourceMappingURL=curso_usuario.js.map
+exports.deleteClase = deleteClase;
+//# sourceMappingURL=clase.js.map

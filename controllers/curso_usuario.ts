@@ -1,9 +1,11 @@
 import { Request, Response } from 'express';
-import { Curso_usuario } from '../model';
+import { Curso, Curso_usuario, Usuario } from '../model';
 
 export const getCurso_usuario = async (req: Request, res: Response) => {
 
-    const curso_usuarios = await Curso_usuario.findAll()
+    const curso_usuarios = await Curso_usuario.findAll({
+        include:  [Usuario, Curso]
+    })
 
     res.status(200).json(
         curso_usuarios
