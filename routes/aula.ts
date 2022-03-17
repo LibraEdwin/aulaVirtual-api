@@ -1,5 +1,4 @@
 import { Router } from "express";
-import {  } from "../controllers/actividad"
 import { getAula, getAulaID, postAula, putAula, deleteAula } from '../controllers/aula';
 
 const routerAula = Router()

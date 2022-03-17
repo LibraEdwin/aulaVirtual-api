@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Actividad, Evento, Usuario } from '../model';
+import { Actividad, Usuario } from '../model';
 
 export const getUser = async (req: Request, res: Response) => {
 
