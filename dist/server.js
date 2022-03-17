@@ -20,7 +20,9 @@ class Server {
     constructor() {
         this.apiPaths = {
             actividad: '/paths/actividad',
+            aula_usuario: '/paths/aula_usuario',
             aula: '/paths/aula',
+            curso_usuario: '/paths/curso_usuario',
             curso: '/paths/curso',
             evento: '/paths/evento',
             user: '/paths/usuario'
@@ -49,7 +51,9 @@ class Server {
     }
     routes() {
         this.app.use(this.apiPaths.actividad, routes_1.routerActividad);
+        this.app.use(this.apiPaths.aula_usuario, routes_1.routerAula_usuario);
         this.app.use(this.apiPaths.aula, routes_1.routerAula);
+        this.app.use(this.apiPaths.curso_usuario, routes_1.routerCurso_usuario);
         this.app.use(this.apiPaths.curso, routes_1.routerCurso);
         this.app.use(this.apiPaths.evento, routes_1.routerEvento);
         this.app.use(this.apiPaths.user, routes_1.routerUser);

@@ -1,5 +1,7 @@
 import Actividad from "./actividad";
+import Aula_usuario from './aula_usuario'
 import Aula from "./aula";
+import Curso_usuario from './curso_usuario'
 import Curso from "./curso";
 import Evento from "./evento";
 import Usuario from './usuario';
@@ -17,7 +19,9 @@ Usuario.hasMany(Evento,{foreignKey: 'usuario_idusuarios'})
 
 export {
     Actividad,
-    Aula, 
+    Aula_usuario,
+    Aula,
+    Curso_usuario,
     Curso,
     Evento,
     Usuario
