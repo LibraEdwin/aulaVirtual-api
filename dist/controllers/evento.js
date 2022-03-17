@@ -12,7 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteEvento = exports.putEvento = exports.postEvento = exports.getEventoID = exports.getEvento = void 0;
 const model_1 = require("../model");
 const getEvento = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const evento = yield model_1.Evento.findAll();
+    const evento = yield model_1.Evento.findAll({
+        include: {
+            model: model_1.Usuario
+        }
+    });
     res.status(200).json(evento);
 });
 exports.getEvento = getEvento;

@@ -1,9 +1,13 @@
 import { Request, Response } from 'express';
-import { Evento } from '../model';
+import { Evento, Usuario } from '../model';
 
 export const getEvento = async (req: Request, res: Response) => {
 
-    const evento = await Evento.findAll()
+    const evento = await Evento.findAll({
+        include: {
+            model: Usuario
+        }
+    })
 
     res.status(200).json(
         evento

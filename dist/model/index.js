@@ -14,5 +14,10 @@ const evento_1 = __importDefault(require("./evento"));
 exports.Evento = evento_1.default;
 const usuario_1 = __importDefault(require("./usuario"));
 exports.Usuario = usuario_1.default;
-actividad_1.default.belongsTo(usuario_1.default, { foreignKey: 'usuario_idusuario' });
+//Relacion de actividad con usuario
+actividad_1.default.belongsTo(usuario_1.default, { foreignKey: 'usuario_idusuarios' });
+usuario_1.default.hasMany(actividad_1.default, { foreignKey: 'usuario_idusuarios' });
+//Relacion de evento con usuario
+evento_1.default.belongsTo(usuario_1.default, { foreignKey: 'usuario_idusuarios' });
+usuario_1.default.hasMany(evento_1.default, { foreignKey: 'usuario_idusuarios' });
 //# sourceMappingURL=index.js.map

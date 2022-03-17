@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize'
 import db from '../db/connection'
 
 const Actividad = db.define('Actividad', {
-    idactividad: {
+    idactividads: {
         type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true
@@ -16,7 +16,7 @@ const Actividad = db.define('Actividad', {
     nota: {
         type: DataTypes.INTEGER
     },
-    usuario_idusuario: {
+    usuario_idusuarios: {
         type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false
     }

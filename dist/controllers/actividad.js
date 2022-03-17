@@ -13,9 +13,7 @@ exports.deleteActividad = exports.putActividad = exports.postActividad = exports
 const model_1 = require("../model");
 const getActividad = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const actividad = yield model_1.Actividad.findAll({
-        include: {
-            model: model_1.Usuario
-        }
+        include: model_1.Usuario
     });
     res.status(200).json(actividad);
 });

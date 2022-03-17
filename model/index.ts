@@ -4,11 +4,20 @@ import Curso from "./curso";
 import Evento from "./evento";
 import Usuario from './usuario';
 
-Actividad.belongsTo(Usuario,{foreignKey: 'usuario_idusuario'})
+//Relacion de actividad con usuario
+Actividad.belongsTo(Usuario,{foreignKey: 'usuario_idusuarios'})
+Usuario.hasMany(Actividad,{foreignKey: 'usuario_idusuarios'})
+
+//Relacion de evento con usuario
+Evento.belongsTo(Usuario,{foreignKey: 'usuario_idusuarios'})
+Usuario.hasMany(Evento,{foreignKey: 'usuario_idusuarios'})
+
+//relacion de muchos a muchos
+
 
 export {
     Actividad,
-    Aula,
+    Aula, 
     Curso,
     Evento,
     Usuario

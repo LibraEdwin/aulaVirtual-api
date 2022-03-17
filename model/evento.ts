@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize'
 import db from '../db/connection'
 
 const Evento = db.define('Evento', {
-    idevento: {
+    ideventos: {
         type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true
@@ -16,7 +16,7 @@ const Evento = db.define('Evento', {
     archivo: {
         type: DataTypes.STRING
     },
-    usuario_idusuario: {
+    usuario_idusuarios: {
         type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false
     }

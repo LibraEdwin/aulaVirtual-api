@@ -4,9 +4,7 @@ import { Actividad, Usuario } from '../model';
 export const getActividad = async (req: Request, res: Response) => {
 
     const actividad = await Actividad.findAll({
-        include: {
-            model: Usuario
-        }
+        include:  Usuario
     })
 
     res.status(200).json(

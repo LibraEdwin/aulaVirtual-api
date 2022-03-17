@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
 const Actividad = connection_1.default.define('Actividad', {
-    idactividad: {
+    idactividads: {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true
@@ -20,7 +20,7 @@ const Actividad = connection_1.default.define('Actividad', {
     nota: {
         type: sequelize_1.DataTypes.INTEGER
     },
-    usuario_idusuario: {
+    usuario_idusuarios: {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         allowNull: false
     }
