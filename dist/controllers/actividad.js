@@ -13,7 +13,14 @@ exports.deleteActividad = exports.putActividad = exports.postActividad = exports
 const model_1 = require("../model");
 const getActividad = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const actividad = yield model_1.Actividad.findAll({
-        include: model_1.Usuario
+        attributes: [
+            'actividad', 'comentario', 'nota'
+        ],
+        include: {
+            model: model_1.Usuario,
+            attributes: ['nombres', 'apellidos'],
+            where: { estado: true }
+        }
     });
     res.status(200).json(actividad);
 });
