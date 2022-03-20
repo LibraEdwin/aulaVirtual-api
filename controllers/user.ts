@@ -1,19 +1,23 @@
 import { Request, Response } from 'express';
 import { Actividad, Usuario } from '../model';
+import bcryptjs from 'bcryptjs'
+import { validationResult } from 'express-validator';
 
 export const getUser = async (req: Request, res: Response) => {
 
-    const user = await Usuario.findAll({
-        attributes:[
-            'nombres','apellidos','correo','contraseña','img','rol'
-        ],
-        include: [
-            Actividad
-        ],
-        where:{
-            rol:'ALUMNO'
-        }
-    })
+    const user = await Usuario.findAll(
+        //     {
+        //     attributes:[
+        //         'nombres','apellidos','correo','contraseña','img','rol'
+        //     ],
+        //     include: [
+        //         Actividad
+        //     ],
+        //     where:{
+        //         rol:'DOCENTE'
+        //     }
+        // }
+    )
 
     res.status(200).json(
         user
@@ -35,11 +39,34 @@ export const getUserID = async (req: Request, res: Response) => {
 
 export const postUser = async (req: Request, res: Response) => {
 
-    const { body } = req
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+        return res.status(400).json(errors)
+    }
+
+    const { nombres, apellidos, correo, password, img, rol } = req.body
+
+    const existeCorreo = await Usuario.findAll({
+        where: {
+            correo
+        }
+    })
+
+    if (existeCorreo){
+        return res.status(400).json({
+            ok: false,
+            msg: 'El correo ya esta registrado'
+        })
+    }
 
     try {
 
-        const user = await Usuario.create(body)
+        const salt = bcryptjs.genSaltSync()
+        const contraseña = bcryptjs.hashSync(password, salt)
+
+        const user = await Usuario.create({ nombres, apellidos, correo, contraseña, img, rol })
+
+
         await user.save()
         res.status(201).json({
             ok: true,

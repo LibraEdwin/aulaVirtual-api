@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { check } from "express-validator";
 import { getUser, getUserID, postUser, putUser, deleteUser } from '../controllers/user';
 
 const routerUser = Router()
@@ -7,7 +8,9 @@ routerUser.get('/', getUser)
 
 routerUser.get('/:id', getUserID)
 
-routerUser.post('/', postUser)
+routerUser.post('/', [
+    check('correo', 'El correo no es valido').isEmail()
+], postUser)
 
 routerUser.put('/:id', putUser)
 
