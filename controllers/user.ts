@@ -38,12 +38,12 @@ export const getUserID = async (req: Request, res: Response) => {
 
 export const postUser = async (req: Request, res: Response) => {
 
-    const { nombres, apellidos, correo, password, img, rol } = req.body
+    let { nombres, apellidos, correo, contraseña, img, rol } = req.body
 
     try {
 
         const salt = bcryptjs.genSaltSync()
-        const contraseña = bcryptjs.hashSync(password, salt)
+        contraseña = bcryptjs.hashSync(contraseña, salt)
 
         const user = await Usuario.create({ nombres, apellidos, correo, contraseña, img, rol })
 
@@ -70,20 +70,21 @@ export const postUser = async (req: Request, res: Response) => {
 export const putUser = async (req: Request, res: Response) => {
 
     const { id } = req.params
-    const { body } = req
+    let { idusuarios, correo, rol, estado, ...resto } = req.body
+
+    if(resto.contraseña){
+        const salt = bcryptjs.genSaltSync()
+        resto.contraseña = bcryptjs.hashSync(resto.contraseña, salt)
+    }
+
 
     try {
 
-        const user = await Usuario.findByPk(id)
+        let user: any | null
 
-        if (!user) {
-            return res.status(404).json({
-                ok: false,
-                msg: `No existe el usuario con el id: ${id}`
-            })
-        }
+        user = await Usuario.findByPk(id)
 
-        await user.update(body)
+        await user.update(resto)
 
         res.status(201).json({
             ok: true,

@@ -1,5 +1,7 @@
-import { existeEmail } from "../helpers/emailExiste";
+import { existeEmail } from "./existeEmail";
+import { existeID } from "./existeID";
 
 export {
-    existeEmail
+    existeEmail,
+    existeID
 }

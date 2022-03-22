@@ -8,6 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -39,10 +50,10 @@ const getUserID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getUserID = getUserID;
 const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { nombres, apellidos, correo, password, img, rol } = req.body;
+    let { nombres, apellidos, correo, contraseña, img, rol } = req.body;
     try {
         const salt = bcryptjs_1.default.genSaltSync();
-        const contraseña = bcryptjs_1.default.hashSync(password, salt);
+        contraseña = bcryptjs_1.default.hashSync(contraseña, salt);
         const user = yield model_1.Usuario.create({ nombres, apellidos, correo, contraseña, img, rol });
         yield user.save();
         res.status(201).json({
@@ -61,16 +72,15 @@ const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.postUser = postUser;
 const putUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { body } = req;
+    let _a = req.body, { idusuarios, correo, rol, estado } = _a, resto = __rest(_a, ["idusuarios", "correo", "rol", "estado"]);
+    if (resto.contraseña) {
+        const salt = bcryptjs_1.default.genSaltSync();
+        resto.contraseña = bcryptjs_1.default.hashSync(resto.contraseña, salt);
+    }
     try {
-        const user = yield model_1.Usuario.findByPk(id);
-        if (!user) {
-            return res.status(404).json({
-                ok: false,
-                msg: `No existe el usuario con el id: ${id}`
-            });
-        }
-        yield user.update(body);
+        let user;
+        user = yield model_1.Usuario.findByPk(id);
+        yield user.update(resto);
         res.status(201).json({
             ok: true,
             msg: 'Usuario actualizaddo'
