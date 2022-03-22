@@ -40,17 +40,6 @@ const getUserID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getUserID = getUserID;
 const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { nombres, apellidos, correo, password, img, rol } = req.body;
-    const existeCorreo = yield model_1.Usuario.findAll({
-        where: {
-            correo
-        }
-    });
-    if (existeCorreo) {
-        return res.status(400).json({
-            ok: false,
-            msg: 'El correo ya esta registrado'
-        });
-    }
     try {
         const salt = bcryptjs_1.default.genSaltSync();
         const contraseña = bcryptjs_1.default.hashSync(password, salt);

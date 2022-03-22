@@ -40,19 +40,6 @@ export const postUser = async (req: Request, res: Response) => {
 
     const { nombres, apellidos, correo, password, img, rol } = req.body
 
-    const existeCorreo = await Usuario.findAll({
-        where: {
-            correo
-        }
-    })
-
-    if (existeCorreo){
-        return res.status(400).json({
-            ok: false,
-            msg: 'El correo ya esta registrado'
-        })
-    }
-
     try {
 
         const salt = bcryptjs.genSaltSync()
