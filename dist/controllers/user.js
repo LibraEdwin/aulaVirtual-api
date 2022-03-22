@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUser = exports.putUser = exports.postUser = exports.getUserID = exports.getUser = void 0;
 const model_1 = require("../model");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const express_validator_1 = require("express-validator");
 const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield model_1.Usuario.findAll(
     //     {
@@ -40,10 +39,6 @@ const getUserID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getUserID = getUserID;
 const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const errors = (0, express_validator_1.validationResult)(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json(errors);
-    }
     const { nombres, apellidos, correo, password, img, rol } = req.body;
     const existeCorreo = yield model_1.Usuario.findAll({
         where: {
