@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { Usuario } from '../model';
 import bcryptjs from 'bcryptjs'
+import { generarJWT } from '../helpers';
 
 export const login = async (req: Request, res: Response) => {
 
@@ -12,33 +13,25 @@ export const login = async (req: Request, res: Response) => {
 
         usuario = await Usuario.findOne({ where: { correo } })
 
-        if (!usuario) {
-            return res.status(400).json({
-                ok: false,
-                msg: 'Usuario o contraseña son incorrectos - correo'
-            })
-        }
-
-        if (!usuario.estado) {
-            return res.status(400).json({
-                ok: false,
-                msg: 'Usuario o contraseña son incorrectos - estado'
-            })
-        }
-
         const validContraseña = bcryptjs.compareSync(contraseña, usuario.contraseña)
 
         if (!validContraseña) {
             return res.status(400).json({
-                ok: false,
-                msg: 'Usuario o contraseña son incorrectos - contraseña'
-            })
+                error: [{
+                    value: usuario.correo,
+                    msg: "Usuario o contraseña son incorrectos - contraseña",
+                    param: "correo",
+                    location: "body"
+                }]
+            }
+            )
         }
 
-        res.status(500).json({
-            ok: true,
-            msg: 'Login ok'
+        const token = await generarJWT(usuario.idusuarios)
 
+        res.status(500).json({
+            usuario,
+            token
         })
 
     } catch (error) {

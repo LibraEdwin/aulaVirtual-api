@@ -15,33 +15,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = void 0;
 const model_1 = require("../model");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const helpers_1 = require("../helpers");
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { correo, contraseña } = req.body;
     try {
         let usuario;
         usuario = yield model_1.Usuario.findOne({ where: { correo } });
-        if (!usuario) {
-            return res.status(400).json({
-                ok: false,
-                msg: 'Usuario o contraseña son incorrectos - correo'
-            });
-        }
-        if (!usuario.estado) {
-            return res.status(400).json({
-                ok: false,
-                msg: 'Usuario o contraseña son incorrectos - estado'
-            });
-        }
         const validContraseña = bcryptjs_1.default.compareSync(contraseña, usuario.contraseña);
         if (!validContraseña) {
             return res.status(400).json({
-                ok: false,
-                msg: 'Usuario o contraseña son incorrectos - contraseña'
+                error: [{
+                        value: usuario.correo,
+                        msg: "Usuario o contraseña son incorrectos - contraseña",
+                        param: "correo",
+                        location: "body"
+                    }]
             });
         }
+        const token = yield (0, helpers_1.generarJWT)(usuario.idusuarios);
         res.status(500).json({
-            ok: true,
-            msg: 'Login ok'
+            usuario,
+            token
         });
     }
     catch (error) {
