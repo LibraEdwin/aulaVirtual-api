@@ -24,6 +24,9 @@ routerUser.post('/', [
 
 routerUser.put('/:id', [
     check('id').custom(existeID),
+    check('nombres', 'El nombre es obligatorio').notEmpty(),
+    check('apellidos', 'El apellidos es obligatorio').notEmpty(),
+    check('contraseña', 'El password es obligatorio').notEmpty(),
     validarCampos,
 ], putUser)
 

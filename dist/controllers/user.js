@@ -72,7 +72,7 @@ const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.postUser = postUser;
 const putUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    let _a = req.body, { idusuarios, correo, rol, estado } = _a, resto = __rest(_a, ["idusuarios", "correo", "rol", "estado"]);
+    let _a = req.body, { idusuarios, correo, rol, estado, createdAt, updatedAt } = _a, resto = __rest(_a, ["idusuarios", "correo", "rol", "estado", "createdAt", "updatedAt"]);
     if (resto.contraseña) {
         const salt = bcryptjs_1.default.genSaltSync();
         resto.contraseña = bcryptjs_1.default.hashSync(resto.contraseña, salt);

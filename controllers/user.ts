@@ -70,13 +70,12 @@ export const postUser = async (req: Request, res: Response) => {
 export const putUser = async (req: Request, res: Response) => {
 
     const { id } = req.params
-    let { idusuarios, correo, rol, estado, ...resto } = req.body
+    let { idusuarios, correo, rol, estado, createdAt, updatedAt, ...resto } = req.body
 
-    if(resto.contraseña){
+    if (resto.contraseña) {
         const salt = bcryptjs.genSaltSync()
         resto.contraseña = bcryptjs.hashSync(resto.contraseña, salt)
     }
-
 
     try {
 

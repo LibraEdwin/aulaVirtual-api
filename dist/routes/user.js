@@ -21,6 +21,9 @@ routerUser.post('/', [
 ], user_1.postUser);
 routerUser.put('/:id', [
     (0, express_validator_1.check)('id').custom(helpers_1.existeID),
+    (0, express_validator_1.check)('nombres', 'El nombre es obligatorio').notEmpty(),
+    (0, express_validator_1.check)('apellidos', 'El apellidos es obligatorio').notEmpty(),
+    (0, express_validator_1.check)('contraseña', 'El password es obligatorio').notEmpty(),
     middlewares_1.validarCampos,
 ], user_1.putUser);
 routerUser.delete('/:id', user_1.deleteUser);

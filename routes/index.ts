@@ -1,3 +1,5 @@
+import routerAuth from './auth'
+
 import routerActividad from "./actividad";
 import routerAula_usuario from './aula_usuario'
 import routerAula from "./aula";
@@ -8,6 +10,8 @@ import routerEvento from "./evento";
 import routerUser from "./user";
 
 export {
+    routerAuth,
+
     routerActividad,
     routerAula_usuario,
     routerAula,

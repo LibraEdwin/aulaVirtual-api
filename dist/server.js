@@ -19,6 +19,7 @@ const connection_1 = __importDefault(require("./db/connection"));
 class Server {
     constructor() {
         this.apiPaths = {
+            authPath: '/paths/auth',
             actividad: '/paths/actividad',
             aula_usuario: '/paths/aula_usuario',
             aula: '/paths/aula',
@@ -51,6 +52,7 @@ class Server {
         this.app.use(express_1.default.static('public'));
     }
     routes() {
+        this.app.use(this.apiPaths.authPath, routes_1.routerAuth);
         this.app.use(this.apiPaths.actividad, routes_1.routerActividad);
         this.app.use(this.apiPaths.aula_usuario, routes_1.routerAula_usuario);
         this.app.use(this.apiPaths.aula, routes_1.routerAula);
