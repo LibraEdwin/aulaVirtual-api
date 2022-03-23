@@ -27,8 +27,8 @@ export const login = async (req: Request, res: Response) => {
         }
 
         const validContraseña = bcryptjs.compareSync(contraseña, usuario.contraseña)
-        
-        if(!validContraseña){
+
+        if (!validContraseña) {
             return res.status(400).json({
                 ok: false,
                 msg: 'Usuario o contraseña son incorrectos - contraseña'
@@ -38,7 +38,7 @@ export const login = async (req: Request, res: Response) => {
         res.status(500).json({
             ok: true,
             msg: 'Login ok'
-    
+
         })
 
     } catch (error) {

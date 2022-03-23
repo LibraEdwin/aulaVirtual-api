@@ -47,7 +47,6 @@ export const postUser = async (req: Request, res: Response) => {
 
         const user = await Usuario.create({ nombres, apellidos, correo, contraseña, img, rol })
 
-
         await user.save()
         res.status(201).json({
             ok: true,
@@ -55,8 +54,6 @@ export const postUser = async (req: Request, res: Response) => {
         })
 
     } catch (error) {
-
-        console.log(error)
 
         res.status(500).json({
             ok: false,
@@ -91,8 +88,6 @@ export const putUser = async (req: Request, res: Response) => {
         })
 
     } catch (error) {
-
-        console.log(error)
 
         res.status(500).json({
             ok: false,
