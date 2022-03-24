@@ -111,11 +111,29 @@ export const deleteUser = async (req: Request, res: Response) => {
         })
     }
 
-    await user.update({ estado: false })
+    try {
 
-    res.status(200).json({
-        ok: true,
-        msg: 'Usuario desactivado'
-    })
+        await user.update({ estado: false })
+
+        res.status(200).json({
+            ok: true,
+            msg: 'Usuario desactivado'
+        })
+
+    } catch (error) {
+
+        res.status(500).json(
+            {
+                error: [
+                    {
+                        value: "desactivar usuario",
+                        msg: "Hable con el administrador",
+                        param: "desactivar",
+                        location: "deleteUser"
+                    }
+                ]
+            }
+        )
+    }
 
 }

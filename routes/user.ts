@@ -31,6 +31,7 @@ routerUser.put('/:id', [
 ], putUser)
 
 routerUser.delete('/:id', [
+    check('id').custom(existeID),
     validarJWT
 ], deleteUser)
 

@@ -27,6 +27,7 @@ routerUser.put('/:id', [
     middlewares_1.validarCampos,
 ], user_1.putUser);
 routerUser.delete('/:id', [
+    (0, express_validator_1.check)('id').custom(helpers_1.existeID),
     middlewares_1.validarJWT
 ], user_1.deleteUser);
 exports.default = routerUser;
