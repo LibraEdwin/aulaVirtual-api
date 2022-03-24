@@ -1,5 +1,7 @@
-import { validarCampos } from "../middlewares/validar-campos";
+import { validarCampos } from "./validar-campos";
+import { validarJWT } from './validar-JWT'
 
 export {
-    validarCampos
+    validarCampos,
+    validarJWT
 }

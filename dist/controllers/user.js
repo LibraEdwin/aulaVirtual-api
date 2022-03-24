@@ -105,7 +105,7 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     yield user.update({ estado: false });
     res.status(200).json({
         ok: true,
-        msg: 'Usuario desactivado '
+        msg: 'Usuario desactivado'
     });
 });
 exports.deleteUser = deleteUser;

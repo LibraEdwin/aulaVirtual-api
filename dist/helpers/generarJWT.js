@@ -5,10 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generarJWT = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+let FirmaToken;
+FirmaToken = process.env.FIRMATOKENKEY;
 const generarJWT = (id = '') => {
     return new Promise((resolve, reject) => {
         const payload = { id };
-        jsonwebtoken_1.default.sign(payload, 'Esto3sM7Firm@DE1TokEn$$', {
+        jsonwebtoken_1.default.sign(payload, FirmaToken, {
             expiresIn: '4h'
         }, (err, token) => {
             if (err) {

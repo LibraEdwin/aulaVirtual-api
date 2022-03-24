@@ -115,7 +115,7 @@ export const deleteUser = async (req: Request, res: Response) => {
 
     res.status(200).json({
         ok: true,
-        msg: 'Usuario desactivado '
+        msg: 'Usuario desactivado'
     })
 
 }

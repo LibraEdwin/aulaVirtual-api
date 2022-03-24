@@ -26,6 +26,8 @@ routerUser.put('/:id', [
     (0, express_validator_1.check)('contraseña', 'El password es obligatorio').notEmpty(),
     middlewares_1.validarCampos,
 ], user_1.putUser);
-routerUser.delete('/:id', user_1.deleteUser);
+routerUser.delete('/:id', [
+    middlewares_1.validarJWT
+], user_1.deleteUser);
 exports.default = routerUser;
 //# sourceMappingURL=user.js.map

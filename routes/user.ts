@@ -2,7 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { getUser, getUserID, postUser, putUser, deleteUser } from '../controllers/user';
 import { existeID, existeEmail } from "../helpers";
-import { validarCampos } from "../middlewares";
+import { validarCampos, validarJWT } from "../middlewares";
 
 const routerUser = Router()
 
@@ -30,6 +30,8 @@ routerUser.put('/:id', [
     validarCampos,
 ], putUser)
 
-routerUser.delete('/:id', deleteUser)
+routerUser.delete('/:id', [
+    validarJWT
+], deleteUser)
 
 export default routerUser
