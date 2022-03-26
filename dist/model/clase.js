@@ -31,6 +31,8 @@ const Clase = connection_1.default.define('Clase', {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         allowNull: false
     }
+}, {
+    timestamps: false
 });
 exports.default = Clase;
 //# sourceMappingURL=clase.js.map

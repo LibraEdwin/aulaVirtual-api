@@ -11,10 +11,10 @@ const Actividad = connection_1.default.define('Actividad', {
         primaryKey: true,
         autoIncrement: true
     },
-    actividad: {
+    comentario: {
         type: sequelize_1.DataTypes.STRING
     },
-    comentario: {
+    archivo: {
         type: sequelize_1.DataTypes.STRING
     },
     nota: {
@@ -23,7 +23,13 @@ const Actividad = connection_1.default.define('Actividad', {
     usuario_idusuarios: {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         allowNull: false
+    },
+    eventos_ideventos: {
+        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        allowNull: false
     }
+}, {
+    timestamps: false
 });
 exports.default = Actividad;
 //# sourceMappingURL=actividad.js.map

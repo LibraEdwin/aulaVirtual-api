@@ -9,6 +9,8 @@ import routerCurso from "./curso";
 import routerEvento from "./evento";
 import routerUser from "./user";
 
+import routerEventoAlumno from './alumno/routerEventoAlumno'
+
 export {
     routerAuth,
 
@@ -19,5 +21,7 @@ export {
     routerCurso_usuario,
     routerCurso,
     routerEvento,
-    routerUser
+    routerUser,
+
+    routerEventoAlumno
 }

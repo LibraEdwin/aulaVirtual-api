@@ -1,12 +1,12 @@
 import express, { Application } from 'express'
-import { routerActividad, routerAula, routerCurso, routerEvento, routerUser, routerCurso_usuario, routerAula_usuario, routerClase, routerAuth } from './routes'
+import { routerActividad, routerAula, routerCurso, routerEvento, routerUser, routerCurso_usuario, routerAula_usuario, routerClase, routerAuth, routerEventoAlumno } from './routes'
 import cors from 'cors'
 import db from './db/connection'
 
 class Server {
 
     private app: Application
-    private port: string
+    private port: string | any
     private apiPaths = {
 
         authPath: '/paths/auth',
@@ -18,14 +18,16 @@ class Server {
         curso_usuario: '/paths/curso_usuario',
         curso: '/paths/curso',
         evento: '/paths/evento',
-        user: '/paths/usuario'
+        user: '/paths/usuario',
+
+        eventoAlumno: '/eventoAlumno'
 
     }
 
     constructor() {
 
         this.app = express()
-        this.port = process.env.PORT || '8000'
+        this.port = process.env.PORT
 
         this.dbConnection()
 
@@ -70,6 +72,8 @@ class Server {
         this.app.use(this.apiPaths.curso, routerCurso)
         this.app.use(this.apiPaths.evento, routerEvento)
         this.app.use(this.apiPaths.user, routerUser)
+
+        this.app.use(this.apiPaths.eventoAlumno, routerEventoAlumno)
     }
 
     listen() {

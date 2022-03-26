@@ -14,6 +14,8 @@ const Curso = connection_1.default.define('Curso', {
     curso: {
         type: sequelize_1.DataTypes.STRING
     }
+}, {
+    timestamps: false
 });
 exports.default = Curso;
 //# sourceMappingURL=curso.js.map

@@ -3,16 +3,18 @@ import { Actividad, Usuario } from '../model';
 
 export const getActividad = async (req: Request, res: Response) => {
 
-    const actividad = await Actividad.findAll({
-        attributes: [
-            'actividad', 'comentario', 'nota'
-        ],
-        include: {
-            model: Usuario,
-            attributes: ['nombres', 'apellidos'],
-            where: { estado: true }
-        }
-    })
+    const actividad = await Actividad.findAll(
+    //     {
+    //     attributes: [
+    //         'actividad', 'comentario', 'nota'
+    //     ],
+    //     include: {
+    //         model: Usuario,
+    //         attributes: ['nombres', 'apellidos'],
+    //         where: { estado: true }
+    //     }
+    // }
+    )
 
     res.status(200).json(
         actividad

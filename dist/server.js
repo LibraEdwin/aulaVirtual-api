@@ -27,10 +27,11 @@ class Server {
             curso_usuario: '/paths/curso_usuario',
             curso: '/paths/curso',
             evento: '/paths/evento',
-            user: '/paths/usuario'
+            user: '/paths/usuario',
+            eventoAlumno: '/eventoAlumno'
         };
         this.app = (0, express_1.default)();
-        this.port = process.env.PORT || '8000';
+        this.port = process.env.PORT;
         this.dbConnection();
         this.middlewares();
         this.routes();
@@ -61,6 +62,7 @@ class Server {
         this.app.use(this.apiPaths.curso, routes_1.routerCurso);
         this.app.use(this.apiPaths.evento, routes_1.routerEvento);
         this.app.use(this.apiPaths.user, routes_1.routerUser);
+        this.app.use(this.apiPaths.eventoAlumno, routes_1.routerEventoAlumno);
     }
     listen() {
         this.app.listen(this.port);

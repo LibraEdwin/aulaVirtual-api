@@ -11,7 +11,7 @@ const Evento = connection_1.default.define('Evento', {
         primaryKey: true,
         autoIncrement: true
     },
-    evento: {
+    actividad: {
         type: sequelize_1.DataTypes.STRING
     },
     comentario: {
@@ -20,10 +20,22 @@ const Evento = connection_1.default.define('Evento', {
     archivo: {
         type: sequelize_1.DataTypes.STRING
     },
+    inicio: {
+        type: sequelize_1.DataTypes.DATE
+    },
+    final: {
+        type: sequelize_1.DataTypes.DATE
+    },
     usuario_idusuarios: {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         allowNull: false
+    },
+    aulas_idaulas: {
+        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        allowNull: false
     }
+}, {
+    timestamps: false
 });
 exports.default = Evento;
 //# sourceMappingURL=evento.js.map

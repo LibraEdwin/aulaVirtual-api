@@ -3,11 +3,7 @@ import { Evento, Usuario } from '../model';
 
 export const getEvento = async (req: Request, res: Response) => {
 
-    const evento = await Evento.findAll({
-        include: {
-            model: Usuario
-        }
-    })
+    const evento = await Evento.findAll()
 
     res.status(200).json(
         evento

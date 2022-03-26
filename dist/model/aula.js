@@ -17,6 +17,8 @@ const Aula = connection_1.default.define('Aula', {
     seccion: {
         type: sequelize_1.DataTypes.STRING
     }
+}, {
+    timestamps: false
 });
 exports.default = Aula;
 //# sourceMappingURL=aula.js.map

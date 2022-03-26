@@ -28,6 +28,14 @@ usuario_1.default.hasMany(actividad_1.default, { foreignKey: 'usuario_idusuarios
 evento_1.default.belongsTo(usuario_1.default, { foreignKey: 'usuario_idusuarios' });
 usuario_1.default.hasMany(evento_1.default, { foreignKey: 'usuario_idusuarios' });
 //----------------------------------------------------------------------------
+//Relacion de evento con aulas
+evento_1.default.belongsTo(aula_1.default, { foreignKey: 'aulas_idaulas' });
+aula_1.default.hasMany(evento_1.default, { foreignKey: 'aulas_idaulas' });
+//----------------------------------------------------------------------------
+//Relacion de evento con actividad
+actividad_1.default.belongsTo(evento_1.default, { foreignKey: 'eventos_ideventos' });
+evento_1.default.hasMany(actividad_1.default, { foreignKey: 'eventos_ideventos' });
+//----------------------------------------------------------------------------
 //relacion de muchos a muchos de cursos_usuarios
 curso_usuario_1.default.belongsTo(usuario_1.default, { foreignKey: 'usuario_idusuarios' });
 usuario_1.default.hasMany(curso_usuario_1.default, { foreignKey: 'usuario_idusuarios' });
