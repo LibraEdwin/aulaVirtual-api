@@ -104,6 +104,7 @@ export const deleteUser = async (req: Request, res: Response) => {
 
     const user = await Usuario.findByPk(id)
 
+
     if (!user) {
         return res.status(404).json({
             ok: false,

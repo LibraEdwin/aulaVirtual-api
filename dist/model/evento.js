@@ -30,7 +30,7 @@ const Evento = connection_1.default.define('Evento', {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         allowNull: false
     },
-    aulas_idaulas: {
+    clases_idclases: {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         allowNull: false
     }

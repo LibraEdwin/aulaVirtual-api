@@ -12,33 +12,56 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getEventos = void 0;
+exports.getEventosAlumno = void 0;
 const model_1 = require("../../model");
 const moment_1 = __importDefault(require("moment"));
 moment_1.default.locale('es');
-const getEventos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getEventosAlumno = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
-        let [evento] = yield model_1.Evento.findAll({
+        const evento = yield model_1.Evento.findAll({
+            attributes: [
+                'actividad', 'comentario', 'archivo', 'inicio', 'final'
+            ],
             where: {
                 usuario_idusuarios: id
-            }
+            },
+            include: [
+                {
+                    model: model_1.Usuario,
+                    attributes: [
+                        'nombres', 'apellidos'
+                    ]
+                },
+                {
+                    model: model_1.Clase,
+                    attributes: [
+                        'tema'
+                    ],
+                    include: [
+                        {
+                            model: model_1.Aula,
+                            attributes: [
+                                'grado', 'seccion'
+                            ]
+                        },
+                        {
+                            model: model_1.Curso,
+                            attributes: [
+                                'curso'
+                            ]
+                        }
+                    ]
+                },
+            ]
         });
-        const usuario = yield model_1.Usuario.findByPk(evento.usuario_idusuarios);
-        console.log(usuario);
-        const actividad = yield model_1.Actividad.findAll({
-            where: {
-                usuario_idusuarios: id
-            }
-        });
-        res.status(200).json({ evento,
-            usuario });
+        res.status(200).json(evento);
     }
     catch (error) {
         return res.status(401).json({
             error: [
                 {
-                    value: "getEventos",
+                    value: "getEventosAlumno",
                     msg: "hable con el administrador",
                     param: "api",
                     location: "eventoAlumno"
@@ -47,5 +70,5 @@ const getEventos = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         });
     }
 });
-exports.getEventos = getEventos;
+exports.getEventosAlumno = getEventosAlumno;
 //# sourceMappingURL=eventoAlumno.js.map

@@ -1,35 +1,56 @@
 import { Request, Response } from 'express';
-import { Evento, Usuario, Actividad, Aula } from '../../model';
+import { Evento, Usuario, Actividad, Aula, Clase, Curso } from '../../model';
 import moment from 'moment'
 
 moment.locale('es')
 
-export const getEventos = async (req: Request, res: Response) => {
+export const getEventosAlumno = async (req: Request, res: Response) => {
 
     const { id } = req.params
 
     try {
 
-        let [evento] : string|any = await Evento.findAll({
-            where: {
-                usuario_idusuarios: id
+        const evento = await Evento.findAll(
+            {
+                attributes: [
+                    'actividad', 'comentario', 'archivo', 'inicio', 'final'
+                ],
+                where: {
+                    usuario_idusuarios: id
+
+                },
+                include: [
+                    {
+                        model: Usuario,
+                        attributes: [
+                            'nombres', 'apellidos'
+                        ]
+                    },
+                    {
+                        model: Clase,
+                        attributes: [
+                            'tema'
+                        ],
+                        include: [
+                            {
+                                model: Aula,
+                                attributes: [
+                                    'grado', 'seccion'
+                                ]
+                            },
+                            {
+                                model: Curso,
+                                attributes: [
+                                    'curso'
+                                ]
+                            }
+                        ]
+                    },
+                ]
             }
-        })
-
-        const usuario = await Usuario.findByPk(evento.usuario_idusuarios)
-
-        console.log(usuario)
-
-        const actividad = await Actividad.findAll({
-            where: {
-                usuario_idusuarios: id
-            }
-        })
-
-        res.status(200).json(
-            {evento,
-                usuario}
         )
+
+        res.status(200).json(evento)
 
     } catch (error) {
 
@@ -37,7 +58,7 @@ export const getEventos = async (req: Request, res: Response) => {
             {
                 error: [
                     {
-                        value: "getEventos",
+                        value: "getEventosAlumno",
                         msg: "hable con el administrador",
                         param: "api",
                         location: "eventoAlumno"
@@ -47,7 +68,4 @@ export const getEventos = async (req: Request, res: Response) => {
         )
 
     }
-
-
-
 }

@@ -12,29 +12,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteClase = exports.putClase = exports.postClase = exports.getClaseID = exports.getClase = void 0;
 const model_1 = require("../model");
 const getClase = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const clase = yield model_1.Clase.findAll({
-        attributes: [
-            'tema', 'link', 'inicio', 'final'
-        ],
-        include: [{
-                model: model_1.Aula,
-                attributes: [
-                    'grado', 'seccion'
-                ]
-            },
-            {
-                model: model_1.Curso,
-                attributes: [
-                    'curso'
-                ],
-                include: [{
-                        model: model_1.Curso_usuario,
-                        include: [{
-                                model: model_1.Usuario
-                            }]
-                    }]
-            }]
-    });
+    const clase = yield model_1.Clase.findAll(
+    //     {
+    //     attributes: [
+    //         'tema', 'link', 'inicio', 'final'
+    //     ],
+    //     include: [{
+    //         model:Aula,
+    //         attributes: [
+    //             'grado', 'seccion'
+    //         ]
+    //     },
+    //     {
+    //         model:Curso,
+    //         attributes: [
+    //             'curso'
+    //         ],
+    //         include:[{
+    //             model:Curso_usuario,
+    //             include:[{
+    //                 model:Usuario
+    //             }]
+    //         }]
+    //     }]
+    // }
+    );
     res.status(200).json(clase);
 });
 exports.getClase = getClase;

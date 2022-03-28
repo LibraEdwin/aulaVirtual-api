@@ -3,29 +3,31 @@ import { Aula, Clase, Curso, Curso_usuario, Usuario } from '../model';
 
 export const getClase = async (req: Request, res: Response) => {
 
-    const clase = await Clase.findAll({
-        attributes: [
-            'tema', 'link', 'inicio', 'final'
-        ],
-        include: [{
-            model:Aula,
-            attributes: [
-                'grado', 'seccion'
-            ]
-        },
-        {
-            model:Curso,
-            attributes: [
-                'curso'
-            ],
-            include:[{
-                model:Curso_usuario,
-                include:[{
-                    model:Usuario
-                }]
-            }]
-        }]
-    })
+    const clase = await Clase.findAll(
+    //     {
+    //     attributes: [
+    //         'tema', 'link', 'inicio', 'final'
+    //     ],
+    //     include: [{
+    //         model:Aula,
+    //         attributes: [
+    //             'grado', 'seccion'
+    //         ]
+    //     },
+    //     {
+    //         model:Curso,
+    //         attributes: [
+    //             'curso'
+    //         ],
+    //         include:[{
+    //             model:Curso_usuario,
+    //             include:[{
+    //                 model:Usuario
+    //             }]
+    //         }]
+    //     }]
+    // }
+    )
 
     res.status(200).json(
         clase

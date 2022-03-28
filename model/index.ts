@@ -17,9 +17,9 @@ Evento.belongsTo(Usuario,{foreignKey: 'usuario_idusuarios'})
 Usuario.hasMany(Evento,{foreignKey: 'usuario_idusuarios'})
 //----------------------------------------------------------------------------
 
-//Relacion de evento con aulas
-Evento.belongsTo(Aula,{foreignKey: 'aulas_idaulas'})
-Aula.hasMany(Evento,{foreignKey: 'aulas_idaulas'})
+//Relacion de evento con clase
+Evento.belongsTo(Clase,{foreignKey: 'clases_idclases'})
+Clase.hasMany(Evento,{foreignKey: 'clases_idclases'})
 //----------------------------------------------------------------------------
 
 //Relacion de evento con actividad

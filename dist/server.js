@@ -28,7 +28,7 @@ class Server {
             curso: '/paths/curso',
             evento: '/paths/evento',
             user: '/paths/usuario',
-            eventoAlumno: '/eventoAlumno'
+            eventoAlumno: '/alumno'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT;

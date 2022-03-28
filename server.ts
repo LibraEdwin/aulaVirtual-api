@@ -20,7 +20,7 @@ class Server {
         evento: '/paths/evento',
         user: '/paths/usuario',
 
-        eventoAlumno: '/eventoAlumno'
+        eventoAlumno: '/alumno'
 
     }
 
