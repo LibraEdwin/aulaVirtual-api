@@ -55,6 +55,14 @@ const getEventosAlumno = (req, res) => __awaiter(void 0, void 0, void 0, functio
                 },
             ]
         });
+        let data;
+        for (let i = 0; i < evento.length; i++) {
+            const element = evento[i];
+            data = {
+                actividad: element.actividad
+            };
+        }
+        console.log(data);
         res.status(200).json(evento);
     }
     catch (error) {

@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = void 0;
 const model_1 = require("../model");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const helpers_1 = require("../helpers");
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { correo, contraseña } = req.body;
     try {
@@ -32,11 +31,14 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                     }]
             });
         }
-        const token = yield (0, helpers_1.generarJWT)(usuario.idusuarios);
-        res.status(500).json({
-            usuario,
-            token
-        });
+        const user = {
+            id: usuario.idusuarios,
+            nombres: usuario.nombres + ' ' + usuario.apellidos,
+            correo: usuario.correo,
+            img: usuario.img,
+            rol: usuario.rol
+        };
+        res.status(200).json(user);
     }
     catch (error) {
         res.status(500).json({

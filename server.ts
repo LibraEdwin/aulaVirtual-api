@@ -1,7 +1,8 @@
 import express, { Application } from 'express'
-import { routerActividad, routerAula, routerCurso, routerEvento, routerUser, routerCurso_usuario, routerAula_usuario, routerClase, routerAuth, routerEventoAlumno } from './routes'
+import { routerActividad, routerAula, routerCurso, routerEvento, routerUser, routerCurso_usuario, routerAula_usuario, routerClase, routerAuth, routerAlumno } from './routes'
 import cors from 'cors'
 import db from './db/connection'
+import routerAdmin from './routes/admin/routerAdmin';
 
 class Server {
 
@@ -20,7 +21,9 @@ class Server {
         evento: '/paths/evento',
         user: '/paths/usuario',
 
-        eventoAlumno: '/alumno'
+        eventoAlumno: '/alumno',
+
+        admin: '/admin'
 
     }
 
@@ -73,7 +76,9 @@ class Server {
         this.app.use(this.apiPaths.evento, routerEvento)
         this.app.use(this.apiPaths.user, routerUser)
 
-        this.app.use(this.apiPaths.eventoAlumno, routerEventoAlumno)
+        this.app.use(this.apiPaths.eventoAlumno, routerAlumno)
+
+        this.app.use(this.apiPaths.admin, routerAdmin)
     }
 
     listen() {

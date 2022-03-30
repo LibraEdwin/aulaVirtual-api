@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.routerEventoAlumno = exports.routerUser = exports.routerEvento = exports.routerCurso = exports.routerCurso_usuario = exports.routerClase = exports.routerAula = exports.routerAula_usuario = exports.routerActividad = exports.routerAuth = void 0;
+exports.routerAlumno = exports.routerUser = exports.routerEvento = exports.routerCurso = exports.routerCurso_usuario = exports.routerClase = exports.routerAula = exports.routerAula_usuario = exports.routerActividad = exports.routerAuth = void 0;
 const auth_1 = __importDefault(require("./auth"));
 exports.routerAuth = auth_1.default;
 const actividad_1 = __importDefault(require("./actividad"));
@@ -22,6 +22,6 @@ const evento_1 = __importDefault(require("./evento"));
 exports.routerEvento = evento_1.default;
 const user_1 = __importDefault(require("./user"));
 exports.routerUser = user_1.default;
-const routerEventoAlumno_1 = __importDefault(require("./alumno/routerEventoAlumno"));
-exports.routerEventoAlumno = routerEventoAlumno_1.default;
+const routerAlumno_1 = __importDefault(require("./alumno/routerAlumno"));
+exports.routerAlumno = routerAlumno_1.default;
 //# sourceMappingURL=index.js.map

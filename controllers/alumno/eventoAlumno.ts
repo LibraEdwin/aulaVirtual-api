@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import e, { Request, Response } from 'express';
 import { Evento, Usuario, Actividad, Aula, Clase, Curso } from '../../model';
 import moment from 'moment'
 
@@ -10,7 +10,7 @@ export const getEventosAlumno = async (req: Request, res: Response) => {
 
     try {
 
-        const evento = await Evento.findAll(
+        const evento: [] | any = await Evento.findAll(
             {
                 attributes: [
                     'actividad', 'comentario', 'archivo', 'inicio', 'final'
@@ -49,6 +49,19 @@ export const getEventosAlumno = async (req: Request, res: Response) => {
                 ]
             }
         )
+
+        let data: [] | any
+
+        for (let i = 0; i < evento.length; i++) {
+            const element = evento[i];
+
+            data={
+                actividad: element.actividad
+            }
+            
+        }
+
+        console.log(data)
 
         res.status(200).json(evento)
 

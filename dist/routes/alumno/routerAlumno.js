@@ -16,4 +16,4 @@ routerAlumno.post('/', [
     middlewares_1.validarCampos,
 ], actividadAlumno_1.postActividadAlumno);
 exports.default = routerAlumno;
-//# sourceMappingURL=routerEventoAlumno.js.map
+//# sourceMappingURL=routerAlumno.js.map

@@ -16,6 +16,7 @@ const express_1 = __importDefault(require("express"));
 const routes_1 = require("./routes");
 const cors_1 = __importDefault(require("cors"));
 const connection_1 = __importDefault(require("./db/connection"));
+const routerAdmin_1 = __importDefault(require("./routes/admin/routerAdmin"));
 class Server {
     constructor() {
         this.apiPaths = {
@@ -28,7 +29,8 @@ class Server {
             curso: '/paths/curso',
             evento: '/paths/evento',
             user: '/paths/usuario',
-            eventoAlumno: '/alumno'
+            eventoAlumno: '/alumno',
+            admin: '/admin'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT;
@@ -62,7 +64,8 @@ class Server {
         this.app.use(this.apiPaths.curso, routes_1.routerCurso);
         this.app.use(this.apiPaths.evento, routes_1.routerEvento);
         this.app.use(this.apiPaths.user, routes_1.routerUser);
-        this.app.use(this.apiPaths.eventoAlumno, routes_1.routerEventoAlumno);
+        this.app.use(this.apiPaths.eventoAlumno, routes_1.routerAlumno);
+        this.app.use(this.apiPaths.admin, routerAdmin_1.default);
     }
     listen() {
         this.app.listen(this.port);
