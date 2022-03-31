@@ -1,5 +1,5 @@
 import e, { Request, Response } from 'express';
-import { Evento, Usuario, Actividad, Aula, Clase, Curso } from '../../model';
+import { Evento, Usuario, Actividad, Aula, Clase, Curso, Aula_usuario } from '../../model';
 import moment from 'moment'
 
 moment.locale('es')
@@ -33,12 +33,6 @@ export const getEventosAlumno = async (req: Request, res: Response) => {
                         ],
                         include: [
                             {
-                                model: Aula,
-                                attributes: [
-                                    'grado', 'seccion'
-                                ]
-                            },
-                            {
                                 model: Curso,
                                 attributes: [
                                     'curso'
@@ -55,10 +49,10 @@ export const getEventosAlumno = async (req: Request, res: Response) => {
         for (let i = 0; i < evento.length; i++) {
             const element = evento[i];
 
-            data={
+            data = {
                 actividad: element.actividad
             }
-            
+
         }
 
         console.log(data)

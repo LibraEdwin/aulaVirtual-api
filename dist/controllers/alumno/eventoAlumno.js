@@ -40,12 +40,6 @@ const getEventosAlumno = (req, res) => __awaiter(void 0, void 0, void 0, functio
                     ],
                     include: [
                         {
-                            model: model_1.Aula,
-                            attributes: [
-                                'grado', 'seccion'
-                            ]
-                        },
-                        {
                             model: model_1.Curso,
                             attributes: [
                                 'curso'
