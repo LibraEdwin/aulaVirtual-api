@@ -13,7 +13,17 @@ exports.deleteAula_usuario = exports.putAula_usuario = exports.postAula_usuario 
 const model_1 = require("../model");
 const getAula_usuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const aula_usuario = yield model_1.Aula_usuario.findAll({
-        include: [model_1.Usuario, model_1.Aula]
+        include: [
+            {
+                model: model_1.Usuario
+            }, {
+                model: model_1.Aula,
+                where: {
+                    grado: '1°',
+                    seccion: 'A'
+                }
+            }
+        ]
     });
     res.status(200).json(aula_usuario);
 });

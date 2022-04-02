@@ -6,26 +6,24 @@ moment.locale('es')
 
 export const getAlumnoAula = async (req: Request, res: Response) => {
 
+    const {grado, seccion}: any = req.query
+
     try {
 
-        const grado = '1°'
-
-        const seccion = 'A'
-
         const aula_usuario: any = await Aula_usuario.findAll({
-            group: 'usuario_idusuarios'
+            include: [
+                {
+                    model: Usuario
+                }, {
+                    model: Aula,
+                    where: {
+                        grado,
+                        seccion
+                    }
+    
+                }
+            ]
         })
-
-        let numero = 1
-
-        for (let i = 0; i < aula_usuario.length; i++) {
-            const element = aula_usuario[i].aulas_idaulas;
-            if (element === 6) {
-                numero = numero + i
-            }
-        }
-
-        console.log(numero)
 
         res.status(200).json(aula_usuario)
 
