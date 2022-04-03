@@ -3,7 +3,9 @@ import { Aula } from '../model';
 
 export const getAula = async (req: Request, res: Response) => {
 
-    const aula = await Aula.findAll()
+    const aula = await Aula.findAll({
+        group:'grado'
+    })
 
     res.status(200).json(
         aula

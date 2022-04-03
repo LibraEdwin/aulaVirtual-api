@@ -12,7 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteAula = exports.putAula = exports.postAula = exports.getAulaID = exports.getAula = void 0;
 const model_1 = require("../model");
 const getAula = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const aula = yield model_1.Aula.findAll();
+    const aula = yield model_1.Aula.findAll({
+        group: 'grado'
+    });
     res.status(200).json(aula);
 });
 exports.getAula = getAula;

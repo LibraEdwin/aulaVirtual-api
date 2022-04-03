@@ -7,7 +7,7 @@ export const getAula_usuario = async (req: Request, res: Response) => {
         include: [
             {
                 model: Usuario
-            }, {
+            },{
                 model: Aula,
                 where: {
                     grado: '1°',

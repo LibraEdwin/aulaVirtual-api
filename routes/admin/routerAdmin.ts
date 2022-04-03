@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { getAlumnoAula } from "../../controllers/admin/controllersAdmin";
+import { getAlumnos, getAula } from '../../controllers/admin/controllersGetAdmin';
 import { validarCampos } from "../../middlewares";
 
 const routerAdmin = Router()
 
-routerAdmin.get('/', getAlumnoAula)
+routerAdmin.get('/alumnos', getAlumnos)
+
+routerAdmin.get('/Aula', getAula)
 
 //routerAdmin.get('/:id', )
 
