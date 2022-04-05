@@ -34,6 +34,7 @@ class Server {
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT;
+        this.username = process.env.PORTDATABASE;
         this.dbConnection();
         this.middlewares();
         this.routes();
@@ -42,7 +43,7 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield connection_1.default.authenticate();
-                console.log(`Db online en el puerto ${this.port}`);
+                console.log(`BD: ${this.username} online en el puerto ${this.port}`);
             }
             catch (error) {
                 console.error(`Error en la base de datos ${error}`);

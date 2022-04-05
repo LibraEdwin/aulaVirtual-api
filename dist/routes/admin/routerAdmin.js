@@ -2,9 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const controllersGetAdmin_1 = require("../../controllers/admin/controllersGetAdmin");
+const controllersPostAdmin_1 = require("../../controllers/admin/controllersPostAdmin");
+const controllersPutAdmin_1 = require("../../controllers/admin/controllersPutAdmin");
 const routerAdmin = (0, express_1.Router)();
+routerAdmin.get('/usuariosAlumno', controllersGetAdmin_1.getUsuariosAlumno);
+routerAdmin.post('/usuariosAlumno', controllersPostAdmin_1.postUsuarioAlumno);
+routerAdmin.put('/usuariosAlumno/:id', controllersPutAdmin_1.putUsuarioAlumno);
 routerAdmin.get('/alumnos', controllersGetAdmin_1.getAlumnos);
 routerAdmin.get('/Aula', controllersGetAdmin_1.getAula);
-//routerAdmin.get('/:id', )
 exports.default = routerAdmin;
 //# sourceMappingURL=routerAdmin.js.map

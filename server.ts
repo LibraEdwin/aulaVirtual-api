@@ -8,6 +8,7 @@ class Server {
 
     private app: Application
     private port: string | any
+    private username: string | any
     private apiPaths = {
 
         authPath: '/paths/auth',
@@ -31,6 +32,7 @@ class Server {
 
         this.app = express()
         this.port = process.env.PORT
+        this.username =  process.env.PORTDATABASE
 
         this.dbConnection()
 
@@ -44,7 +46,7 @@ class Server {
         try {
 
             await db.authenticate()
-            console.log(`Db online en el puerto ${this.port}`)
+            console.log(`BD: ${this.username} online en el puerto ${this.port}`)
 
         } catch (error) {
 

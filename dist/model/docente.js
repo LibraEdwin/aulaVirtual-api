@@ -5,31 +5,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-const Actividad = connection_1.default.define('Actividad', {
-    idactividads: {
+const docente = connection_1.default.define('Docente', {
+    iddocentes: {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true
     },
-    comentario: {
-        type: sequelize_1.DataTypes.STRING
-    },
-    archivo: {
-        type: sequelize_1.DataTypes.STRING
-    },
-    nota: {
-        type: sequelize_1.DataTypes.INTEGER
-    },
-    alumnos_idalumnos: {
+    usuarios_idusuarios: {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
-        allowNull: false
+        allowNull: false,
     },
-    eventos_ideventos: {
+    cursos_idcursos: {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
-        allowNull: false
+        allowNull: false,
     }
 }, {
     timestamps: false
 });
-exports.default = Actividad;
-//# sourceMappingURL=actividad.js.map
+exports.default = docente;
+//# sourceMappingURL=docente.js.map

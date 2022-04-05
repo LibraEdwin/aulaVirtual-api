@@ -17,7 +17,7 @@ const Actividad = db.define('Actividad',
         nota: {
             type: DataTypes.INTEGER
         },
-        usuario_idusuarios: {
+        alumnos_idalumnos: {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false
         },

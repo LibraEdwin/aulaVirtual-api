@@ -10,22 +10,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAula_usuario = void 0;
-const model_1 = require("../../model");
 const getAula_usuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const aula_usuario = yield model_1.Aula_usuario.findAll({
-        include: [
-            {
-                model: model_1.Usuario
-            }, {
-                model: model_1.Aula,
-                where: {
-                    grado: '1°',
-                    seccion: 'A'
-                }
-            }
-        ]
-    });
-    res.status(200).json(aula_usuario);
+    // const aula_usuario = await Aula_usuario.findAll({
+    //     include: [
+    //         {
+    //             model: Usuario
+    //         },{
+    //             model: Aula,
+    //             where: {
+    //                 grado: '1°',
+    //                 seccion: 'A'
+    //             }
+    //         }
+    //     ]
+    // })
+    // res.status(200).json(
+    //     aula_usuario
+    // )
 });
 exports.getAula_usuario = getAula_usuario;
 //# sourceMappingURL=MostrarAlumnos.js.map

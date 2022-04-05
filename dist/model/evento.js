@@ -26,7 +26,7 @@ const Evento = connection_1.default.define('Evento', {
     final: {
         type: sequelize_1.DataTypes.DATE
     },
-    usuario_idusuarios: {
+    docentes_iddocentes: {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         allowNull: false
     },

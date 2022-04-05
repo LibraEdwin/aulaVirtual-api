@@ -24,7 +24,7 @@ const Evento = db.define('Evento',
         final: {
             type: DataTypes.DATE
         },
-        usuario_idusuarios: {
+        docentes_iddocentes: {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false
         } ,

@@ -1,17 +1,20 @@
 import { DataTypes } from 'sequelize'
 import db from '../db/connection'
 
-const Curso_usuario = db.define('Curso_usuario',
+const docente = db.define('Docente',
     {
-        usuario_idusuarios: {
+        iddocentes: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        usuarios_idusuarios: {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
-            primaryKey: true
         },
         cursos_idcursos: {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
-            primaryKey: true
         }
     },
     {
@@ -19,4 +22,4 @@ const Curso_usuario = db.define('Curso_usuario',
     }
 )
 
-export default Curso_usuario
+export default docente

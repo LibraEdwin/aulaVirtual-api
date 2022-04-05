@@ -8,14 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAlumnos = exports.getAula = void 0;
+exports.getAlumnos = exports.getUsuariosAlumno = exports.getAula = void 0;
 const model_1 = require("../../model");
-const moment_1 = __importDefault(require("moment"));
-moment_1.default.locale('es');
 const getAula = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const aula = yield model_1.Aula.findAll({ order: ['grado'] });
@@ -35,17 +30,55 @@ const getAula = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getAula = getAula;
-const getAlumnos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield model_1.Aula_usuario.findAll({
-        include: [{
-                model: model_1.Usuario,
-                where: {
-                    estado: true,
-                    rol: 'ALUMNO',
+const getUsuariosAlumno = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const alumno = yield model_1.Alumno.findAll({
+            include: [{
+                    model: model_1.Usuario,
+                    attributes: ['idusuarios', 'nombres', 'apellidos', 'correo', 'contraseña', 'img']
+                }],
+            where: {
+                aulas_idaulas: null
+            }
+        });
+        res.status(200).json(alumno);
+    }
+    catch (error) {
+        return res.status(401).json({
+            error: [
+                {
+                    value: "getUsuarios",
+                    msg: "hable con el administrador",
+                    param: "api",
+                    location: "controllersGetAdmin"
                 }
-            }],
-    });
-    res.status(200).json(user);
+            ]
+        });
+    }
+});
+exports.getUsuariosAlumno = getUsuariosAlumno;
+const getAlumnos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const alumno = yield model_1.Alumno.findAll({
+            include: [{
+                    model: model_1.Usuario,
+                    attributes: ['nombres', 'apellidos', 'correo', 'img']
+                }]
+        });
+        res.status(200).json(alumno);
+    }
+    catch (error) {
+        return res.status(401).json({
+            error: [
+                {
+                    value: "getAlumnos",
+                    msg: "hable con el administrador",
+                    param: "api",
+                    location: "controllersGetAdmin"
+                }
+            ]
+        });
+    }
 });
 exports.getAlumnos = getAlumnos;
 //# sourceMappingURL=controllersGetAdmin.js.map

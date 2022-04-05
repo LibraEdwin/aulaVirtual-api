@@ -1,14 +1,9 @@
 import { Request, Response } from 'express';
-import { Evento, Usuario, Actividad, Aula, Clase, Curso, Aula_usuario, Curso_usuario } from '../../model';
-import moment from 'moment'
-
-moment.locale('es')
+import { Usuario, Aula, Alumno } from '../../model';
 
 export const getAula = async (req: Request, res: Response) => {
-
     try {
         const aula = await Aula.findAll({ order: ['grado'] })
-
         res.status(200).json(
             aula
         )
@@ -25,25 +20,64 @@ export const getAula = async (req: Request, res: Response) => {
                 ]
             }
         )
-
     }
-
 }
+
+export const getUsuariosAlumno = async (req: Request, res: Response) => {
+
+    try {
+        const alumno = await Alumno.findAll({
+            include: [{
+                model: Usuario,
+                attributes: ['idusuarios', 'nombres', 'apellidos', 'correo', 'contraseña', 'img']
+            }],
+            where: {
+                aulas_idaulas: null
+            }
+        })
+        res.status(200).json(
+            alumno
+        )
+    } catch (error) {
+        return res.status(401).json(
+            {
+                error: [
+                    {
+                        value: "getUsuarios",
+                        msg: "hable con el administrador",
+                        param: "api",
+                        location: "controllersGetAdmin"
+                    }
+                ]
+            }
+        )
+    }
+}
+
 export const getAlumnos = async (req: Request, res: Response) => {
 
-    const user = await Aula_usuario.findAll({
-        include: [{
-            model: Usuario,
-            where: {
-                estado: true,
-                rol: 'ALUMNO',
+    try {
+        const alumno = await Alumno.findAll({
+            include: [{
+                model: Usuario,
+                attributes: ['nombres', 'apellidos', 'correo', 'img']
+            }]
+        })
+        res.status(200).json(
+            alumno
+        )
+    } catch (error) {
+        return res.status(401).json(
+            {
+                error: [
+                    {
+                        value: "getAlumnos",
+                        msg: "hable con el administrador",
+                        param: "api",
+                        location: "controllersGetAdmin"
+                    }
+                ]
             }
-        }],
-
-    })
-
-    res.status(200).json(
-        user
-    )
-
+        )
+    }
 }
