@@ -35,7 +35,8 @@ const getUsuariosAlumno = (req, res) => __awaiter(void 0, void 0, void 0, functi
         const alumno = yield model_1.Alumno.findAll({
             include: [{
                     model: model_1.Usuario,
-                    attributes: ['idusuarios', 'nombres', 'apellidos', 'correo', 'contraseña', 'img']
+                    attributes: ['idusuarios', 'nombres', 'apellidos', 'correo', 'contraseña', 'img'],
+                    where: { estado: true }
                 }],
             where: {
                 aulas_idaulas: null

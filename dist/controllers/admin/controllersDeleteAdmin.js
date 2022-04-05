@@ -8,44 +8,34 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAlumnoAula = void 0;
+exports.deleteUsuarioAlumno = void 0;
 const model_1 = require("../../model");
-const moment_1 = __importDefault(require("moment"));
-moment_1.default.locale('es');
-const getAlumnoAula = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { grado, seccion } = req.query;
+const deleteUsuarioAlumno = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
     try {
-        const aula_usuario = yield model_1.Aula_usuario.findAll({
-            include: [
-                {
-                    model: model_1.Usuario
-                }, {
-                    model: model_1.Aula,
-                    where: {
-                        grado,
-                        seccion
-                    }
-                }
-            ]
+        yield model_1.Usuario.update({ estado: false }, {
+            where: {
+                idusuarios: id
+            }
         });
-        res.status(200).json(aula_usuario);
+        res.status(201).json({
+            ok: true,
+            msg: 'Usuario Desactivado'
+        });
     }
     catch (error) {
-        return res.status(401).json({
+        res.status(500).json({
             error: [
                 {
-                    value: "getAlumnoAula",
+                    value: "deleteUsuarioAlumno",
                     msg: "hable con el administrador",
                     param: "api",
-                    location: "controllers.Docente"
+                    location: "controllersDeleteAdmin"
                 }
             ]
         });
     }
 });
-exports.getAlumnoAula = getAlumnoAula;
-//# sourceMappingURL=controllersAdmin.js.map
+exports.deleteUsuarioAlumno = deleteUsuarioAlumno;
+//# sourceMappingURL=controllersDeleteAdmin.js.map

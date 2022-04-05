@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Aula, Clase, Curso, Curso_usuario, Usuario } from '../model';
+import { Aula, Clase, Curso, Usuario } from '../model';
 
 export const getClase = async (req: Request, res: Response) => {
 

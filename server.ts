@@ -1,5 +1,5 @@
 import express, { Application } from 'express'
-import { routerActividad, routerAula, routerCurso, routerEvento, routerUser, routerCurso_usuario, routerAula_usuario, routerClase, routerAuth, routerAlumno } from './routes'
+import { routerActividad, routerAula, routerCurso, routerEvento, routerUser, routerClase, routerAuth, routerAlumno } from './routes'
 import cors from 'cors'
 import db from './db/connection'
 import routerAdmin from './routes/admin/routerAdmin';
@@ -14,10 +14,8 @@ class Server {
         authPath: '/paths/auth',
 
         actividad: '/paths/actividad',
-        aula_usuario: '/paths/aula_usuario',
         aula: '/paths/aula',
         clase: '/paths/clase',
-        curso_usuario: '/paths/curso_usuario',
         curso: '/paths/curso',
         evento: '/paths/evento',
         user: '/paths/usuario',
@@ -70,10 +68,8 @@ class Server {
         this.app.use(this.apiPaths.authPath, routerAuth)
 
         this.app.use(this.apiPaths.actividad, routerActividad)
-        this.app.use(this.apiPaths.aula_usuario, routerAula_usuario)
         this.app.use(this.apiPaths.aula, routerAula)
         this.app.use(this.apiPaths.clase, routerClase)
-        this.app.use(this.apiPaths.curso_usuario, routerCurso_usuario)
         this.app.use(this.apiPaths.curso, routerCurso)
         this.app.use(this.apiPaths.evento, routerEvento)
         this.app.use(this.apiPaths.user, routerUser)

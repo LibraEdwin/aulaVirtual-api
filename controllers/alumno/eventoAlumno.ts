@@ -1,5 +1,5 @@
 import e, { Request, Response } from 'express';
-import { Evento, Usuario, Actividad, Aula, Clase, Curso, Aula_usuario } from '../../model';
+import { Evento, Usuario, Actividad, Aula, Clase, Curso } from '../../model';
 import moment from 'moment'
 
 moment.locale('es')

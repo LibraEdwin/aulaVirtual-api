@@ -29,7 +29,8 @@ export const getUsuariosAlumno = async (req: Request, res: Response) => {
         const alumno = await Alumno.findAll({
             include: [{
                 model: Usuario,
-                attributes: ['idusuarios', 'nombres', 'apellidos', 'correo', 'contraseña', 'img']
+                attributes: ['idusuarios', 'nombres', 'apellidos', 'correo', 'contraseña', 'img'],
+                where: { estado : true}
             }],
             where: {
                 aulas_idaulas: null
