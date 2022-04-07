@@ -10,7 +10,8 @@ routerAdmin.get('/usuariosAlumno', controllersGetAdmin_1.getUsuariosAlumno);
 routerAdmin.post('/usuariosAlumno', controllersPostAdmin_1.postUsuarioAlumno);
 routerAdmin.put('/usuariosAlumno/:id', controllersPutAdmin_1.putUsuarioAlumno);
 routerAdmin.delete('/usuariosAlumno/:id', controllersDeleteAdmin_1.deleteUsuarioAlumno);
-routerAdmin.get('/alumnos', controllersGetAdmin_1.getAlumnos);
 routerAdmin.get('/Aula', controllersGetAdmin_1.getAula);
+routerAdmin.put('/asignarAula/:id', controllersPutAdmin_1.putAsignarUsuarioAlumno);
+routerAdmin.get('/alumnos', controllersGetAdmin_1.getAlumnos);
 exports.default = routerAdmin;
 //# sourceMappingURL=routerAdmin.js.map

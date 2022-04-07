@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.putUsuarioAlumno = void 0;
+exports.putAsignarUsuarioAlumno = exports.putUsuarioAlumno = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const model_1 = require("../../model");
 const putUsuarioAlumno = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -32,11 +32,45 @@ const putUsuarioAlumno = (req, res) => __awaiter(void 0, void 0, void 0, functio
         });
     }
     catch (error) {
-        res.status(500).json({
-            ok: false,
-            msg: 'Hable con el administrador'
-        });
+        {
+            error: [
+                {
+                    value: "putUsuarioAlumno",
+                    msg: "hable con el administrador",
+                    param: "api",
+                    location: "controllersPutAdmin"
+                }
+            ];
+        }
     }
 });
 exports.putUsuarioAlumno = putUsuarioAlumno;
+const putAsignarUsuarioAlumno = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    let { aulas_idaulas } = req.body;
+    try {
+        let user;
+        user = yield model_1.Alumno.findByPk(id);
+        yield user.update({
+            aulas_idaulas
+        });
+        res.status(201).json({
+            ok: true,
+            msg: 'Usuario actualizaddo'
+        });
+    }
+    catch (error) {
+        {
+            error: [
+                {
+                    value: "putAsignarUsuarioAlumno",
+                    msg: "hable con el administrador",
+                    param: "api",
+                    location: "controllersPutAdmin"
+                }
+            ];
+        }
+    }
+});
+exports.putAsignarUsuarioAlumno = putAsignarUsuarioAlumno;
 //# sourceMappingURL=controllersPutAdmin.js.map
