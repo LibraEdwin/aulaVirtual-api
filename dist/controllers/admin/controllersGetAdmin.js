@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAlumnos = exports.getUsuariosAlumno = exports.getAula = void 0;
+exports.getAlumnos = exports.getUsuariosAlumnoDesactivado = exports.getUsuariosAlumnoActivados = exports.getAula = void 0;
 const model_1 = require("../../model");
 const getAula = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -30,7 +30,7 @@ const getAula = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getAula = getAula;
-const getUsuariosAlumno = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getUsuariosAlumnoActivados = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const alumno = yield model_1.Alumno.findAll({
             include: [{
@@ -57,7 +57,32 @@ const getUsuariosAlumno = (req, res) => __awaiter(void 0, void 0, void 0, functi
         });
     }
 });
-exports.getUsuariosAlumno = getUsuariosAlumno;
+exports.getUsuariosAlumnoActivados = getUsuariosAlumnoActivados;
+const getUsuariosAlumnoDesactivado = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const alumno = yield model_1.Alumno.findAll({
+            include: [{
+                    model: model_1.Usuario,
+                    attributes: ['idusuarios', 'nombres', 'apellidos', 'correo', 'contraseña', 'img'],
+                    where: { estado: false }
+                }]
+        });
+        res.status(200).json(alumno);
+    }
+    catch (error) {
+        return res.status(401).json({
+            error: [
+                {
+                    value: "getUsuarios",
+                    msg: "hable con el administrador",
+                    param: "api",
+                    location: "controllersGetAdmin"
+                }
+            ]
+        });
+    }
+});
+exports.getUsuariosAlumnoDesactivado = getUsuariosAlumnoDesactivado;
 const getAlumnos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const alumno = yield model_1.Alumno.findAll({

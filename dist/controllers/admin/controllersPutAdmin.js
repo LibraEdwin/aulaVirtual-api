@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.putAsignarUsuarioAlumno = exports.putUsuarioAlumno = void 0;
+exports.putUsuarioAlumnoActivado = exports.putUsuarioAlumnoDesactivado = exports.putAsignarUsuarioAlumno = exports.putUsuarioAlumno = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const model_1 = require("../../model");
 const putUsuarioAlumno = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -73,4 +73,58 @@ const putAsignarUsuarioAlumno = (req, res) => __awaiter(void 0, void 0, void 0, 
     }
 });
 exports.putAsignarUsuarioAlumno = putAsignarUsuarioAlumno;
+const putUsuarioAlumnoDesactivado = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    try {
+        yield model_1.Usuario.update({ estado: false }, {
+            where: {
+                idusuarios: id
+            }
+        });
+        res.status(201).json({
+            ok: true,
+            msg: 'Usuario Desactivado'
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            error: [
+                {
+                    value: "putUsuarioAlumnoDesactivado",
+                    msg: "hable con el administrador",
+                    param: "api",
+                    location: "controllersPutAdmin"
+                }
+            ]
+        });
+    }
+});
+exports.putUsuarioAlumnoDesactivado = putUsuarioAlumnoDesactivado;
+const putUsuarioAlumnoActivado = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    try {
+        yield model_1.Usuario.update({ estado: true }, {
+            where: {
+                idusuarios: id
+            }
+        });
+        res.status(201).json({
+            ok: true,
+            msg: 'Usuario Activado'
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            error: [
+                {
+                    value: "putUsuarioAlumnoActivado",
+                    msg: "hable con el administrador",
+                    param: "api",
+                    location: "controllersPutAdmin"
+                }
+            ]
+        });
+    }
+});
+exports.putUsuarioAlumnoActivado = putUsuarioAlumnoActivado;
 //# sourceMappingURL=controllersPutAdmin.js.map

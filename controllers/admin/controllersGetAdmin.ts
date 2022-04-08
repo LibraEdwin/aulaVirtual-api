@@ -23,7 +23,7 @@ export const getAula = async (req: Request, res: Response) => {
     }
 }
 
-export const getUsuariosAlumno = async (req: Request, res: Response) => {
+export const getUsuariosAlumnoActivados = async (req: Request, res: Response) => {
 
     try {
         const alumno = await Alumno.findAll({
@@ -35,6 +35,35 @@ export const getUsuariosAlumno = async (req: Request, res: Response) => {
             where: {
                 aulas_idaulas: null
             }
+        })
+        res.status(200).json(
+            alumno
+        )
+    } catch (error) {
+        return res.status(401).json(
+            {
+                error: [
+                    {
+                        value: "getUsuarios",
+                        msg: "hable con el administrador",
+                        param: "api",
+                        location: "controllersGetAdmin"
+                    }
+                ]
+            }
+        )
+    }
+}
+
+export const getUsuariosAlumnoDesactivado = async (req: Request, res: Response) => {
+
+    try {
+        const alumno = await Alumno.findAll({
+            include: [{
+                model: Usuario,
+                attributes: ['idusuarios', 'nombres', 'apellidos', 'correo', 'contraseña', 'img'],
+                where: { estado : false}
+            }]
         })
         res.status(200).json(
             alumno

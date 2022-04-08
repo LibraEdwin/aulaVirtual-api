@@ -74,3 +74,73 @@ export const putAsignarUsuarioAlumno = async (req: Request, res: Response) => {
     }
 
 }
+
+export const putUsuarioAlumnoDesactivado = async (req: Request, res: Response) => {
+
+    const { id } = req.params
+
+    try {
+
+        await Usuario.update({ estado: false }, {
+            where: {
+                idusuarios: id
+            }
+        });
+
+        res.status(201).json({
+            ok: true,
+            msg: 'Usuario Desactivado'
+        })
+
+    } catch (error) {
+
+        res.status(500).json(
+            {
+                error: [
+                    {
+                        value: "putUsuarioAlumnoDesactivado",
+                        msg: "hable con el administrador",
+                        param: "api",
+                        location: "controllersPutAdmin"
+                    }
+                ]
+            }
+        )
+
+    }
+}
+
+export const putUsuarioAlumnoActivado = async (req: Request, res: Response) => {
+
+    const { id } = req.params
+
+    try {
+
+        await Usuario.update({ estado: true }, {
+            where: {
+                idusuarios: id
+            }
+        });
+
+        res.status(201).json({
+            ok: true,
+            msg: 'Usuario Activado'
+        })
+
+    } catch (error) {
+
+        res.status(500).json(
+            {
+                error: [
+                    {
+                        value: "putUsuarioAlumnoActivado",
+                        msg: "hable con el administrador",
+                        param: "api",
+                        location: "controllersPutAdmin"
+                    }
+                ]
+            }
+        )
+
+    }
+}
