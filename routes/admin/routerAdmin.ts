@@ -4,6 +4,7 @@ import { postUsuarioAlumno } from "../../controllers/admin/controllersPostAdmin"
 import { putUsuarioAlumno, putAsignarUsuarioAlumno, putUsuarioAlumnoDesactivado, putUsuarioAlumnoActivado } from '../../controllers/admin/controllersPutAdmin';
 import { validarCampos } from "../../middlewares";
 import { check } from "express-validator";
+import { deleteUsuarioAlumnoDesactivado } from "../../controllers/admin/controllersDeleteAdmin";
 
 const routerAdmin = Router()
 
@@ -14,6 +15,8 @@ routerAdmin.put('/usuariosAlumnoDesactivar/:id', putUsuarioAlumnoDesactivado)
 
 routerAdmin.get('/usuariosAlumnoDesactivados', getUsuariosAlumnoDesactivado)
 routerAdmin.put('/usuariosAlumnoActivar/:id', putUsuarioAlumnoActivado)
+routerAdmin.delete('/usuariosAlumnoDesactivado/:id', deleteUsuarioAlumnoDesactivado)
+
 
 routerAdmin.get('/Aula', getAula)
 
