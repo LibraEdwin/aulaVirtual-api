@@ -9,18 +9,25 @@ import { deleteUsuarioAlumnoDesactivado } from "../../controllers/admin/controll
 const routerAdmin = Router()
 
 routerAdmin.get('/usuariosAlumnoActivados', getUsuariosAlumnoActivados)
+routerAdmin.get('/usuariosAlumnoDesactivados', getUsuariosAlumnoDesactivado)
+
 routerAdmin.post('/usuariosAlumno', postUsuarioAlumno)
+
 routerAdmin.put('/usuariosAlumno/:id', putUsuarioAlumno)
+
+routerAdmin.put('/usuariosAlumnoActivar/:id', putUsuarioAlumnoActivado)
 routerAdmin.put('/usuariosAlumnoDesactivar/:id', putUsuarioAlumnoDesactivado)
 
-routerAdmin.get('/usuariosAlumnoDesactivados', getUsuariosAlumnoDesactivado)
-routerAdmin.put('/usuariosAlumnoActivar/:id', putUsuarioAlumnoActivado)
 routerAdmin.delete('/usuariosAlumnoDesactivado/:id', deleteUsuarioAlumnoDesactivado)
 
+routerAdmin.put('/asignarAula/:id', putAsignarUsuarioAlumno)
 
 routerAdmin.get('/Aula', getAula)
 
-routerAdmin.put('/asignarAula/:id', putAsignarUsuarioAlumno)
+
+
+
+
 
 routerAdmin.get('/alumnos', getAlumnos)
 

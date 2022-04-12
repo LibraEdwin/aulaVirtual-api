@@ -7,14 +7,14 @@ const controllersPutAdmin_1 = require("../../controllers/admin/controllersPutAdm
 const controllersDeleteAdmin_1 = require("../../controllers/admin/controllersDeleteAdmin");
 const routerAdmin = (0, express_1.Router)();
 routerAdmin.get('/usuariosAlumnoActivados', controllersGetAdmin_1.getUsuariosAlumnoActivados);
+routerAdmin.get('/usuariosAlumnoDesactivados', controllersGetAdmin_1.getUsuariosAlumnoDesactivado);
 routerAdmin.post('/usuariosAlumno', controllersPostAdmin_1.postUsuarioAlumno);
 routerAdmin.put('/usuariosAlumno/:id', controllersPutAdmin_1.putUsuarioAlumno);
-routerAdmin.put('/usuariosAlumnoDesactivar/:id', controllersPutAdmin_1.putUsuarioAlumnoDesactivado);
-routerAdmin.get('/usuariosAlumnoDesactivados', controllersGetAdmin_1.getUsuariosAlumnoDesactivado);
 routerAdmin.put('/usuariosAlumnoActivar/:id', controllersPutAdmin_1.putUsuarioAlumnoActivado);
+routerAdmin.put('/usuariosAlumnoDesactivar/:id', controllersPutAdmin_1.putUsuarioAlumnoDesactivado);
 routerAdmin.delete('/usuariosAlumnoDesactivado/:id', controllersDeleteAdmin_1.deleteUsuarioAlumnoDesactivado);
-routerAdmin.get('/Aula', controllersGetAdmin_1.getAula);
 routerAdmin.put('/asignarAula/:id', controllersPutAdmin_1.putAsignarUsuarioAlumno);
+routerAdmin.get('/Aula', controllersGetAdmin_1.getAula);
 routerAdmin.get('/alumnos', controllersGetAdmin_1.getAlumnos);
 exports.default = routerAdmin;
 //# sourceMappingURL=routerAdmin.js.map
