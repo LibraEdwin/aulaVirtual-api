@@ -10,6 +10,7 @@ export const postUsuarioAlumno = async (req: Request, res: Response) => {
 
     const salt = bcryptjs.genSaltSync()
     contraseña = bcryptjs.hashSync(contraseña, salt)
+    
 
     try {
         const usuario = await Usuario.create({ nombres, apellidos, correo, contraseña, img, rol })
